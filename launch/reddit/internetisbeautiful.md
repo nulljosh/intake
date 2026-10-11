@@ -10,4 +10,4 @@ Healstack derives your current "active stack" from dose timing and known duratio
 
 There's a library of 200 substances with harm-reduction notes behind it, plus a heatmap of your patterns over time and lab results tracking. Free to use, data stored per-user with row-level security, no analytics or trackers.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com

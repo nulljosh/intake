@@ -16,4 +16,4 @@ It's free to use. There's a $1 one-time CSV export on the web version if you wan
 
 Would genuinely like feedback on the interaction checker, that's the part I care about getting right.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com

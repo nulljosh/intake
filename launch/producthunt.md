@@ -26,4 +26,4 @@ Would love feedback on the interaction warnings especially. That's the part I ca
 Pricing: free app, $1 one-time CSV export on web.
 
 ## Links
-- Web app: https://healstack.heyitsmejosh.com
+- Web app: https://healstack.jaybulb.com

@@ -10,4 +10,4 @@ I take more than one supplement and could never picture how they overlapped in t
 
 It's web, iOS, and macOS, built on Supabase for auth and storage (row-level security per user), no analytics or trackers. Free to use, with a $1 one-time CSV export on web. Would appreciate feedback on the interaction checker in particular.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com

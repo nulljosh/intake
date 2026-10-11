@@ -12,4 +12,4 @@ Built Healstack around that: log a dose, it derives the current "active stack" f
 
 Free to use, web/iOS/macOS, data kept per-user with row-level security. Curious how others here are tracking interaction timing, most quantified-self tooling I've seen tracks totals per day rather than actual overlap windows.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com

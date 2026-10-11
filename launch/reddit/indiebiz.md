@@ -12,4 +12,4 @@ The reasoning: tracking has to be free so people actually build the habit of log
 
 It's early. I'm not trying to make this a big revenue line, more testing whether a one-time unlock like this is worth the plumbing versus just leaving everything free. Curious if anyone else here has tried a single small one-time charge instead of a subscription and what happened.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com

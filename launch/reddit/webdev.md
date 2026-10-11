@@ -12,4 +12,4 @@ Stack is React/Vite on the frontend, Supabase for auth and Postgres with row-lev
 
 Happy to talk through the derived-state approach if anyone's solved something similar, or if there's an obvious hole in it I'm not seeing.
 
-https://healstack.heyitsmejosh.com
+https://healstack.jaybulb.com
