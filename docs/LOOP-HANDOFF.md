@@ -1,8 +1,8 @@
-# Healstack loop handoff (2026-10-04, evening)
+# Intake loop handoff (2026-10-04, evening)
 
 ## What the loop is
 
-QA the Healstack landing page and app until A+ quality. Each pass: run tests and build, record the live landing and app (headless), fix real bugs, redeploy, re-verify. No subagent fan-out. Portfolio vibe design rules apply (no em dashes, no emojis, Geist font, flat monochrome + blue accent).
+QA the Intake landing page and app until A+ quality. Each pass: run tests and build, record the live landing and app (headless), fix real bugs, redeploy, re-verify. No subagent fan-out. Portfolio vibe design rules apply (no em dashes, no emojis, Geist font, flat monochrome + blue accent).
 
 ## Where things stand (2026-10-04)
 
@@ -23,5 +23,5 @@ QA the Healstack landing page and app until A+ quality. Each pass: run tests and
 ## Restart prompt
 
 ```
-/loop QA the Healstack landing page and app (~/Documents/Code/intake) until A+ quality: spotless visuals and every line sound. Each pass: run tests+build, record the live landing and app (record-web / headless, no Chrome), fix real bugs, redeploy, re-verify. No subagent fan-out, no em dashes, no emojis, portfolio vibe design rules from CLAUDE.md.
+/loop QA the Intake landing page and app (~/Documents/Code/intake) until A+ quality: spotless visuals and every line sound. Each pass: run tests+build, record the live landing and app (record-web / headless, no Chrome), fix real bugs, redeploy, re-verify. No subagent fan-out, no em dashes, no emojis, portfolio vibe design rules from CLAUDE.md.
 ```

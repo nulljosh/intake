@@ -1,12 +1,12 @@
 # Architecture
 
-Healstack helps someone track what they take and how their body is doing. Users log doses and substances, biometrics, and lab results, and get a warning if two things they take are known to interact badly, plus track bodywork routines like acupuncture or reflexology. It runs as a web app and an iOS app, both built from the same code where possible. Sign-in is through Supabase (email/password or OAuth). Paying users get cross-device sync and other extras, handled by small Cloudflare-hosted functions and a key-value store.
+Intake helps someone track what they take and how their body is doing. Users log doses and substances, biometrics, and lab results, and get a warning if two things they take are known to interact badly, plus track bodywork routines like acupuncture or reflexology. It runs as a web app and an iOS app, both built from the same code where possible. Sign-in is through Supabase (email/password or OAuth). Paying users get cross-device sync and other extras, handled by small Cloudflare-hosted functions and a key-value store.
 
 ## How it runs
 
 **Web**: User opens the site, signs in with Supabase credentials. Dashboard lists active dose entries from localStorage, checks interactions, renders health metrics. Logging a dose checks the interaction database. Pro features (CSV export, cross-device sync) call Cloudflare Functions endpoints (stripe.js for checkout, sync.js for data push/pull).
 
-**iOS**: Launch `HealstackApp.swift`, which initializes Supabase client from Info.plist, prompts auth if needed. Same UI surfaces the five core tabs: Home (Dashboard), Substances, Journal, Insights, Profile. Dose logging, interaction checking, and biometric tracking work identically to web, using the same hooks/models, backed by device localStorage.
+**iOS**: Launch `IntakeApp.swift`, which initializes Supabase client from Info.plist, prompts auth if needed. Same UI surfaces the five core tabs: Home (Dashboard), Substances, Journal, Insights, Profile. Dose logging, interaction checking, and biometric tracking work identically to web, using the same hooks/models, backed by device localStorage.
 
 Data syncs via `functions/api/sync.js` only for Pro users; free users stay local. Lab PDFs are parsed client-side by `src/utils/parseLifeLabs.js` using PDF.js from CDN.
 
@@ -98,8 +98,8 @@ Data syncs via `functions/api/sync.js` only for Pro users; free users stay local
 | `ios/Checks/main.swift` | Self-check for LabResult model, runs standalone: `swiftc -o /tmp/hscheck ios/Models/LabResult.swift ios/Checks/main.swift && /tmp/hscheck` |
 | `ios/CrossPlatform.swift` | Haptics, keyboard type, navigation bar shims for iOS/macOS cross-platform code |
 | `ios/OnboardingView.swift` + `WhatsNewSheet.swift` | Shared first-run UI and release notes, mounted on root app |
-| `ios/HealstackApp.swift` | SwiftUI entry point, five-tab shell (Home, Substances, Journal, Insights, Profile), auth gate, app state, FloatingTabBar and LockView for biometric auth |
-| `ios/HealstackFloatingTabBar.swift` + `AppShareOverlay.swift` | Custom tab bar UI (floats above content), app share sheet for iOS social sharing |
+| `ios/IntakeApp.swift` | SwiftUI entry point, five-tab shell (Home, Substances, Journal, Insights, Profile), auth gate, app state, FloatingTabBar and LockView for biometric auth |
+| `ios/IntakeFloatingTabBar.swift` + `AppShareOverlay.swift` | Custom tab bar UI (floats above content), app share sheet for iOS social sharing |
 | `ios/OnboardingView.swift` | Shared first-run onboarding carousel (copy verbatim into any app that needs it), triggers signup flow on completion |
 | `ios/WhatsNewSheet.swift` | Release notes sheet, appears only when shipping version matches bundled notes version (avoids stale prompts) |
 | `ios/CrossPlatform.swift` | Haptics wrapper (iOS only, no-op on macOS), keyboard type and navigation bar style cross-platform shims |
@@ -141,7 +141,7 @@ Data syncs via `functions/api/sync.js` only for Pro users; free users stay local
 | `_lp.html` + `_lp.jsx` | Landing page entry point, includes demo tour and features callout |
 | `_lpframe.html` + `_lpshot.html` | Frame testing: renders landing at multiple widths (375px + 414px) and both themes side-by-side |
 | `deploy.sh` | Bash script: runs build, then deploys dist/ to Cloudflare Pages via wrangler |
-| `project.yml` | xcodegen config for iOS app (generates Healstack.xcodeproj), defines schemes, build settings, entitlements, team ID, signing |
+| `project.yml` | xcodegen config for iOS app (generates Intake.xcodeproj), defines schemes, build settings, entitlements, team ID, signing |
 
 ## Data flow
 

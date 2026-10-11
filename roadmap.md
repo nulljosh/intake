@@ -1,18 +1,18 @@
-# Healstack Roadmap
+# Intake Roadmap
 
 ## 2026-08-28, iOS 2.3.5 REJECTED under 4.3(a) spam; appeal drafted, do NOT resubmit
 Apple rejected iOS 2.3.5 at 15:14 UTC under Guideline 4.3(a) Design: Spam (submission
 `26e3f066-3572-4409-a386-1b14825a1eea`, thread `eecf3184-0467-32af-8c0a-3bf0ba28ea27`). This is
 the same byte-identical boilerplate letter that hit Talli, Curvely, Doorstock, Sparkjar and NYC
 Survive on 08-26/27, one account-level wave, no named comparison app, no reviewer specifics.
-Healstack is the sixth app in it.
+Intake is the sixth app in it.
 
 **Do not fix code and do not resubmit.** Verified today: of 95 Swift files, exactly one is
 byte-identical to any other app in the account, `ios/UITests/SnapshotHelper.swift`, Apple's own
 fastlane helper, in the test target, not in the shipped binary. Zero shipped files are shared.
 The substance database is 2,688 hand-written lines / 200 entries. There is nothing to fix.
 
-The reply is drafted at `~/Documents/Code/notes/appeal-4-3-spam.md` under "Healstack iOS". Filing
+The reply is drafted at `~/Documents/Code/notes/appeal-4-3-spam.md` under "Intake iOS". Filing
 happens in Resolution Center, which is browser-only (`asc web review` is read-only).
 
 **HELD, deliberately, until the macOS verdict lands.** Decided 2026-08-28. Add the Mac outcome to
@@ -24,7 +24,7 @@ an approval on the same codebase is the strongest sentence the appeal can carry.
 Sparkjar is the precedent: macOS approved while iOS was rejected in the same wave. If Mac clears,
 "the same codebase was just approved on macOS" is the strongest fact in the iOS appeal.
 
-Listing de-templating (subtitle "Supplement & Symptom Tracker", the "Healstack is a personal X, Y
+Listing de-templating (subtitle "Supplement & Symptom Tracker", the "Intake is a personal X, Y
 and Z" opener, the FEATURES block, ten generic single-word keywords) is real and shared across all
 19 listings, but it is after-the-appeal work, not the answer to this letter.
 
@@ -65,7 +65,7 @@ conclude "provider works" from the parse error.)
 by `ios/Views/AuthView.swift:123`. The button no longer renders; email/password sign-in is
 untouched and works. Guideline 4.8 is not a concern, the app offers no *other* third-party
 sign-in, so Sign in with Apple is not required. Build verified:
-`xcodebuild build -project Healstack.xcodeproj -scheme Dose -destination 'generic/platform=iOS Simulator' -skipPackagePluginValidation`
+`xcodebuild build -project Intake.xcodeproj -scheme Dose -destination 'generic/platform=iOS Simulator' -skipPackagePluginValidation`
 -> BUILD SUCCEEDED (the `-skipPackagePluginValidation` flag is still load-bearing).
 
 - [ ] **Re-enable Sign in with Apple properly (blocked on Joshua, dashboard + portal).**
@@ -150,7 +150,7 @@ That is the entire defect.
 
 **FIXED 2026-08-12 (commit `1cfba27`).** The "same root cause as sparkjar and lexly Mac" framing
 was wrong, the three apps failed for three unrelated reasons, and sparkjar doesn't even use
-Supabase Auth. Healstack's own causes, all fixed and build-verified:
+Supabase Auth. Intake's own causes, all fixed and build-verified:
 
 1. `macos/project.yml` never injected `SUPABASE_URL` / `SUPABASE_ANON_KEY`, and the global
    client in `ios/Services/AuthService.swift` called `fatalError` on the missing key, the Mac
@@ -210,7 +210,7 @@ v1.0 is WAITING_FOR_REVIEW (submitted 2026-07-21). Infrastructure migrated from 
   this can't be automated.
 
 ## From App Store.pdf (imported 2026-07-28)
-- [ ] Ship a macOS version of Healstack. Note 2026-08-10: `healstack/macos/` **does exist**, so
+- [ ] Ship a macOS version of Intake. Note 2026-08-10: `healstack/macos/` **does exist**, so
   this is a build+submit job rather than a from-scratch port. There is currently no `MAC_OS`
   version row on app `6785764864` (only IOS), the row gets created by submitting a macOS
   build, not by a dashboard toggle.
@@ -220,7 +220,7 @@ v1.0 is WAITING_FOR_REVIEW (submitted 2026-07-21). Infrastructure migrated from 
 
 ## Root-cause narrowing 2026-08-10, corrects the "login fixed 08-04" claim
 - **CLOSED 2026-08-25** (superseded, the rebuild happened and 2.3.5 is in review; this warning was about the 07-21 build). Was: **"Login was fixed 08-04, just rebuild" is FALSE, do not resubmit on that premise.** No commit since the reviewed 07-21 build touches `ios/Views/AuthView.swift` or `ios/Services/AuthService.swift`. Commit `3f8ae32` (08-04) changed a sync-host string in `SettingsView.swift`; `ba0d18b` (08-03) added sign-in buttons to `src/pages/Auth.jsx`, web only. The iOS login path is byte-identical to what Apple rejected.
-- [ ] **Ruled out: the stale-host bug that sank sparkjar.** `dose.heyitsmejosh.com` is indeed dead (does not resolve) and `healstack.heyitsmejosh.com` is live, but iOS auth does not use either, `ios/Services/AuthService.swift` talks directly to Supabase (`tjsxsqlxjmanwvmywwvw.supabase.co`). Only `ios/Services/SyncService.swift:23` uses the web host, and it is already on the live one.
+- [ ] **Ruled out: the stale-host bug that sank sparkjar.** `dose.heyitsmejosh.com` is indeed dead (does not resolve) and `intake.jaybulb.com` is live, but iOS auth does not use either, `ios/Services/AuthService.swift` talks directly to Supabase (`tjsxsqlxjmanwvmywwvw.supabase.co`). Only `ios/Services/SyncService.swift:23` uses the web host, and it is already on the live one.
 - [ ] **Second suspect: shared-Supabase auth config.** Auth lives on the shared `spark` project, where `site_url`/`uri_allow_list` are project-wide. Confirm the redirect allow-list still covers healstack after the 08-06 Vercel→Cloudflare Pages migration; diff before PATCHing, never blind-overwrite (it is shared with other apps). **Partially retired 2026-08-10:** irrelevant to the iOS rejection (native email/password sign-in never touches a redirect URL, and it returns 200), so this only affects *web* OAuth/magic-link flows. Still worth a diff, no longer a ship blocker.
 - **FIXED 2026-08-25** (bumped `MARKETING_VERSION` to 2.3.5 and `CURRENT_PROJECT_VERSION` to 202608222219, matching the build on ASC's open row; xcodegen regenerates at 2.3.5 and the `Dose` scheme builds clean with `-skipPackagePluginValidation`). Was: **Version drift: `ios/project.yml` says `MARKETING_VERSION: '2.3.4'` but ASC's open row is 2.3.5 (WAITING_FOR_REVIEW), re-verified 2026-08-25.** The next archive would therefore build 2.3.4 against a 2.3.5 row, the exact version-mismatch Apple rejected talli for (see talli v3.5.7). Bump project.yml to 2.3.5 before any further archive. Original note follows:
   1. **Keep lineage (recommended):** edit the ASC version row to `2.3.4` (`asc versions update`) and bump `MARKETING_VERSION` to match. The app's own UI already speaks 2.3.x (the What's New sheet says v2.3.2), so debuting at 2.3.4 stays honest. Row is REJECTED/never-released, so the string should still be editable.
@@ -229,7 +229,7 @@ v1.0 is WAITING_FOR_REVIEW (submitted 2026-07-21). Infrastructure migrated from 
 
 ## App Store submission freeze, LIFTED 2026-08-18
 Freeze lifted 2026-08-18 (Guideline 5.6 suspension expired). Submitted that day and now
-WAITING_FOR_REVIEW: Curvely iOS 1.2.0, Wiretext iOS 1.1.0, Wordroot iOS 1.0, Healstack iOS 2.3.4.
+WAITING_FOR_REVIEW: Curvely iOS 1.2.0, Wiretext iOS 1.1.0, Wordroot iOS 1.0, Intake iOS 2.3.4.
 **Held pending those four verdicts, never a batch:** Sparkjar iOS+Mac, BCGD iOS+Mac, Wordroot Mac,
 Lexly Mac. All six are `asc validate` clean (0 errors, 0 blocking) with a VALID build attached, so
 each is one `asc review submit` away. Do not submit until the in-flight verdicts land.
@@ -331,7 +331,7 @@ Supabase project and is no longer reproducible; do not spend more time hunting i
 Submission `f5e9ce05-9bc0-443b-a360-3b25deb20107`, build `202608181252`
 (`092ba31b-70e7-4c92-9af4-b7cb968b3d16`). Verified by re-reading the version, not from command
 output. This is the first post-freeze submission, per `ship-plan.md` step 5 ("submit one app , 
-Healstack or Sparkjar, confirm it passes, then the rest one at a time").
+Intake or Sparkjar, confirm it passes, then the rest one at a time").
 
 Pre-submit verification that mattered: the demo credentials stored in the ASC review detail
 (`healstack.demo@heyitsmejosh.com`) were confirmed to match `.env.local` **and** to return a valid
@@ -365,7 +365,7 @@ the keychain (`security find-generic-password -s "Supabase CLI" -w`):
 sent and were verified unchanged afterwards. Supabase merges multiple client IDs into
 `external_apple_client_id` as a comma-separated list. Pre-change config backed up.
 
-Client IDs registered: `com.heyitsmejosh.dose` (Healstack), plus `com.nulljosh.brief` and
+Client IDs registered: `com.heyitsmejosh.dose` (Intake), plus `com.nulljosh.brief` and
 `com.nulljosh.brief-macos` (Litigate, blocked on the same step).
 
 Verified: the native endpoint moved from `400 provider_disabled` to
@@ -388,7 +388,7 @@ Built `scripts/check-signin-config.sh` to guard the seven static things that act
 ## Ingested 2026-08-24
 
 - [ ] **Breath, a breathing exercise feature.** From Notes ("work on breath app"); confirmed
-      2026-08-24 that this belongs inside Healstack rather than being its own app. Scope is
+      2026-08-24 that this belongs inside Intake rather than being its own app. Scope is
       undefined beyond the name, needs a decision on what it actually does (timed box-breathing
       / 4-7-8 patterns? logged as a health entry alongside the existing markers? a Live Activity
       or just an in-app timer?) before any build.
@@ -410,7 +410,7 @@ device that screen is an anonymous empty grid.
 a footer naming HealthKit outright and stating the app never writes to Apple Health, and a
 `Connect Apple Health` button shown when `HealthKitService.isAvailable && !isAuthorized`.
 No new service or view, reuses the existing `requestAuthorization()` / `fetchAll()`.
-Build verified: `xcodebuild build -project ios/Healstack.xcodeproj -scheme Dose
+Build verified: `xcodebuild build -project ios/Intake.xcodeproj -scheme Dose
 -destination 'generic/platform=iOS Simulator' -skipPackagePluginValidation` -> BUILD SUCCEEDED.
 
 Resubmitted under **2.3.5** (build `202608271405`), not 2.3.6, a REJECTED version row still accepts
@@ -431,11 +431,11 @@ Two traps hit on the way, both worth remembering:
   Note `asc review doctor` reports `version.state.editable` as **blocking** at that point; it is a
   false negative once the version is already staged on a submission.
 
-- [ ] Healstack accepted to the App Store.
+- [ ] Intake accepted to the App Store.
 
 ## macOS companion, target builds 2026-08-27
 
-Every iOS app here gets a Mac companion. Earlier read that a Mac port guts Healstack was **wrong**:
+Every iOS app here gets a Mac companion. Earlier read that a Mac port guts Intake was **wrong**:
 of 63 Swift files only three touch iOS-only API, `DoseApp.swift` (UIKit, feedback generators,
 `LAContext`), `Views/BodyView.swift` (feedback generators), `Services/HealthKitService.swift`
 (HealthKit, no macOS equivalent). Of five tabs only **Body** depends on HealthKit, and only its
@@ -446,7 +446,7 @@ Follow the `lexly/ios/project.yml` pattern: one project file, two application ta
 ID `com.heyitsmejosh.dose` as a Universal Purchase on the existing record 6785764864. Keep the flat
 source layout, no `Sources/Shared|iOS|macOS` restructure.
 
-**`xcodebuild -scheme Healstack-macOS -destination 'platform=macOS'` -> BUILD SUCCEEDED.** The whole
+**`xcodebuild -scheme Intake-macOS -destination 'platform=macOS'` -> BUILD SUCCEEDED.** The whole
 port was seven compile errors across 63 files.
 
 Ran it 2026-08-27. It launches and works. Fixed on the spot:
@@ -488,8 +488,8 @@ Two other failures were bad tests, not bad code:
 
 ## macOS: UITEST_SNAPSHOT produces no window, found 2026-08-27, PRE-EXISTING
 
-`open Healstack.app --args UITEST_SNAPSHOT` leaves the app running with **no on-screen window**.
-`CGWindowListCopyWindowInfo` finds Healstack windows under `.optionAll` but zero under
+`open Intake.app --args UITEST_SNAPSHOT` leaves the app running with **no on-screen window**.
+`CGWindowListCopyWindowInfo` finds Intake windows under `.optionAll` but zero under
 `.optionOnScreenOnly`. Without the flag the window appears normally at 1000x700 and shows the
 sign-in screen, so screenshots themselves work fine.
 
@@ -509,7 +509,7 @@ Local testing credentials now live in `.env.accounts.local` (gitignored via `.en
 
 ## macOS SUBMITTED 2026-08-27
 
-Healstack for Mac 2.3.5 (build `202608271405`) is **WAITING_FOR_REVIEW**, submission
+Intake for Mac 2.3.5 (build `202608271405`) is **WAITING_FOR_REVIEW**, submission
 `54e8a1a2-b94c-455f-a64c-0c34c4a2c9f4`, macOS version record `b6e6605e-7b26-45ea-940b-6f8f2f27e240`.
 `asc review doctor --platform MAC_OS` reported 0 errors, 0 blocking before submitting. Both
 platforms are now in review at once on the same record, which App Store Connect handles fine.

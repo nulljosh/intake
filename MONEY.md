@@ -1,6 +1,6 @@
-# Healstack Money
+# Intake Money
 
-How Healstack makes money. The fleet-wide ledger is `GTM.md` in the Code root.
+How Intake makes money. The fleet-wide ledger is `GTM.md` in the Code root.
 
 ## Price
 
@@ -22,6 +22,6 @@ Nothing until a store build is live again. Both platforms sit in the 4.3(a) wave
 
 `STRIPE_PRICE_ID` secret on the Cloudflare Pages project, then redeploy.
 
-Anyone who got Healstack while it was free keeps it free. Only new customers pay.
+Anyone who got Intake while it was free keeps it free. Only new customers pay.
 
 *ASC 6785764864. Set 2026-09-20.*

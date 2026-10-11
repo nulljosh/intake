@@ -1,9 +1,9 @@
-# Healstack
+# Intake
 v2.4.0
 
-Renamed from Dose 2026-07-01 (Dose, Balm, Tonic, and several others all taken on the App Store, Healstack cleared). GitHub repo renamed to nulljosh/healstack, domain moved to healstack.heyitsmejosh.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
+Renamed from Dose 2026-07-01 (Dose, Balm, Tonic, and several others all taken on the App Store, Intake cleared). GitHub repo renamed to nulljosh/healstack, domain moved to intake.jaybulb.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
 
-Renaming to Intake, started 2026-10-04. Done: local folder `~/Documents/Code/intake` and GitHub repo `nulljosh/intake`. Not yet: the App Store name (locked while the Mac build is in review, availability unconfirmed), the in-app display name, the web brand text, the domain and the Cloudflare Pages project, which all still say Healstack.
+Renaming to Intake, started 2026-10-04. Done: local folder `~/Documents/Code/intake` and GitHub repo `nulljosh/intake`. Not yet: the App Store name (locked while the Mac build is in review, availability unconfirmed), the in-app display name, the web brand text, the domain and the Cloudflare Pages project, which all still say Intake.
 
 ## Shipped (2026-06-28)
 - [x] ToS checkbox required on register tab, `src/pages/Auth.jsx`, `/tos.html`
@@ -43,7 +43,7 @@ Migrated from Vercel to Cloudflare Pages 2026-08-06. Direct-upload via `wrangler
 
 ## iOS
 - ios/: SwiftUI iOS app. xcodegen (project.yml). iOS 17+.
-- xcodegen generate && xcodebuild build -scheme Healstack -project Healstack.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
+- xcodegen generate && xcodebuild build -scheme Intake -project Intake.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
 
 ## Pending
 - .env.local recreated 2026-06-12 (VITE_SUPABASE_* + HEALSTACK_EMAIL/HEALSTACK_PASSWORD), file is gone again as of 2026-06-20, needs recreating.

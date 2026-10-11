@@ -1,8 +1,8 @@
-# Healstack API
+# Intake API
 
-Base URL: `https://healstack.heyitsmejosh.com`
+Base URL: `https://intake.jaybulb.com`
 
-Healstack is local-first: dose logs, biometrics, lab panels and routines live in
+Intake is local-first: dose logs, biometrics, lab panels and routines live in
 the browser's `localStorage`, not on a server. That means there is deliberately
 no CRUD REST API over your health data — the HTTP surface is only sync and
 billing. **The agent-facing interface is WebMCP** (below), which runs inside the
@@ -15,15 +15,15 @@ page and reaches the same data the UI uses.
 Whole-blob backup and restore of a device's local data, stored in Cloudflare KV.
 
 Auth: `Authorization: Bearer <DOSE_SYNC_TOKEN>`. Requests from browsers are
-restricted to the `healstack.heyitsmejosh.com` origin.
+restricted to the `intake.jaybulb.com` origin.
 
 ```bash
 curl -H "Authorization: Bearer $DOSE_SYNC_TOKEN" \
-  https://healstack.heyitsmejosh.com/api/sync
+  https://intake.jaybulb.com/api/sync
 
 curl -X PUT -H "Authorization: Bearer $DOSE_SYNC_TOKEN" \
   -H 'Content-Type: application/json' --data @backup.json \
-  https://healstack.heyitsmejosh.com/api/sync
+  https://intake.jaybulb.com/api/sync
 ```
 
 `GET` returns the stored blob (`{}` if nothing is stored). `PUT` replaces it

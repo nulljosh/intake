@@ -1,4 +1,4 @@
-# Healstack Technical Whitepaper
+# Intake Technical Whitepaper
 
 **v2.3.5** | August 2026
 
@@ -7,10 +7,10 @@ Know what you took, and what it does with everything else you're on.
 People on more than one supplement or medication rarely track how they
 overlap in time, and the interactions that matter are exactly the ones that
 depend on timing: two things active in the body at once, not two things
-taken on the same calendar day. Healstack exists to hold that timeline so
+taken on the same calendar day. Intake exists to hold that timeline so
 nobody has to keep it in their head. It logs doses, shows what's still
 active, and warns before you combine two things that interact. Web at
-[healstack.heyitsmejosh.com](https://healstack.heyitsmejosh.com), companion
+[intake.jaybulb.com](https://intake.jaybulb.com), companion
 iOS app (bundle ID and `dose://` URL scheme intentionally kept from the app's
 former name, Dose, to avoid re-provisioning, since a new scheme would mean
 relinking the App Store record for no user-facing gain).
