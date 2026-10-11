@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 
 // Nothing else in this app ever writes `pro:<userId>`, so without this handler a completed
-// payment charged the card and unlocked nothing. Checkout carries the Supabase user id in
+// payment charged the card and unlocked nothing. Checkout carries the user id in
 // client_reference_id (see functions/api/stripe.js); that is what we flip here.
 export async function onRequestPost(context) {
   const { request, env } = context;

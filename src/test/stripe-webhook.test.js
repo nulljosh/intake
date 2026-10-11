@@ -16,7 +16,7 @@ vi.mock('stripe', () => {
 
 const kv = { put: vi.fn(async () => {}), get: vi.fn(async () => null) };
 const env = {
-  DOSE_KV: kv, SUPABASE_ANON_KEY: 'anon',
+  DOSE_KV: kv,
   STRIPE_SECRET_KEY: 'sk_test', STRIPE_WEBHOOK_SECRET: 'whsec', STRIPE_PRICE_ID: 'price_real',
 };
 const post = (body = '{}') =>

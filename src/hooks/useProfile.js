@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { spark } from '../lib/spark';
 import { useAuth } from '../context/AuthContext';
 
 const EMPTY_PROFILE = { substances: [], conditions: [], pendingTests: [], notes: '' };
@@ -12,14 +12,14 @@ export function useProfile() {
   useEffect(() => {
     if (!user) return;
 
-    supabase
+    spark
       .from('dose_profiles')
       .select('data')
       .eq('id', user.id)
       .single()
       .then(async ({ data, error }) => {
         if (error || !data) {
-          await supabase.from('dose_profiles').insert({ id: user.id, data: EMPTY_PROFILE });
+          await spark.from('dose_profiles').insert({ id: user.id, data: EMPTY_PROFILE });
           setProfile(EMPTY_PROFILE);
         } else {
           setProfile(data.data);
@@ -30,7 +30,7 @@ export function useProfile() {
 
   async function saveProfile(next) {
     setProfile(next);
-    await supabase
+    await spark
       .from('dose_profiles')
       .upsert({ id: user.id, data: next, updated_at: new Date().toISOString() });
   }

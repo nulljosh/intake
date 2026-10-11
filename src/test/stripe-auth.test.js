@@ -3,7 +3,7 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { onRequest } from '../../functions/api/stripe.js';
 
-const env = { DOSE_KV: { get: vi.fn(async () => '1') }, SUPABASE_ANON_KEY: 'anon', STRIPE_PRICE_ID: 'p' };
+const env = { DOSE_KV: { get: vi.fn(async () => '1') }, STRIPE_PRICE_ID: 'p' };
 
 const req = (method, action, headers = {}) =>
   new Request(`https://healstack.heyitsmejosh.com/api/stripe?action=${action}`, { method, headers });
@@ -17,7 +17,7 @@ describe('stripe endpoint identity', () => {
     expect(env.DOSE_KV.get).not.toHaveBeenCalled();
   });
 
-  it('rejects status when Supabase does not recognise the token', async () => {
+  it('rejects status when the API does not recognise the token', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => new Response('nope', { status: 401 })));
     const res = await onRequest({ request: req('GET', 'status', { authorization: 'Bearer forged' }), env });
     expect(res.status).toBe(401);

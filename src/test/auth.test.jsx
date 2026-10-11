@@ -9,8 +9,8 @@ const mockResetPassword = vi.fn();
 const mockUpdateUser = vi.fn();
 const mockClearRecovery = vi.fn();
 
-vi.mock('../lib/supabase', () => ({
-  supabase: {
+vi.mock('../lib/spark', () => ({
+  spark: {
     auth: {
       signInWithPassword: (...a) => mockSignIn(...a),
       signUp: (...a) => mockSignUp(...a),
@@ -69,7 +69,7 @@ describe('Auth page', () => {
     await waitFor(() => expect(screen.getByText(/Check your email/)).toBeTruthy());
   });
 
-  it('shows error from Supabase on reset failure', async () => {
+  it('shows error from the server on reset failure', async () => {
     mockResetPassword.mockResolvedValue({ error: { message: 'Rate limit exceeded' } });
     render(<Auth />);
     fireEvent.click(screen.getByText('Forgot password?'));
@@ -111,7 +111,7 @@ describe('ResetPassword page', () => {
     await waitFor(() => expect(mockClearRecovery).toHaveBeenCalled());
   });
 
-  it('shows error from Supabase on update failure', async () => {
+  it('shows error from the server on update failure', async () => {
     mockUpdateUser.mockResolvedValue({ error: { message: 'Password too weak' } });
     render(<ResetPassword />);
     fireEvent.change(screen.getByPlaceholderText('New password'), { target: { value: 'weak' } });

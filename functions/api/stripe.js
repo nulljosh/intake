@@ -12,21 +12,21 @@ function getStripe(env) {
 
 const ALLOWED_ORIGIN = 'https://healstack.heyitsmejosh.com';
 
-// Identity comes from the caller's Supabase access token, never from a body/query field.
+// Identity comes from the caller's spark-api access token, never from a body/query field.
 // A client-supplied userId let anyone read another account's pro status and open a
 // checkout session against it.
-// ponytail: one /auth/v1/user round-trip per call rather than local JWT verification --
-// no JWKS fetch, no crypto, and Supabase is already a hard dependency of every request.
+// ponytail: one /auth/user round-trip per call rather than local JWT verification --
+// no crypto here, and spark-api is already a hard dependency of every request.
 // Verify the signature locally only if this endpoint ever gets hot enough to care.
-const SUPABASE_URL = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
+const API_URL = 'https://api.heyitsmejosh.com';
 
 async function callerId(request, env) {
   const auth = request.headers.get('authorization') || '';
   if (!auth.startsWith('Bearer ')) return null;
   let res;
   try {
-    res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-      headers: { Authorization: auth, apikey: env.SUPABASE_ANON_KEY || '' },
+    res = await fetch(`${API_URL}/auth/user`, {
+      headers: { Authorization: auth },
       signal: AbortSignal.timeout(5000),
     });
   } catch {
