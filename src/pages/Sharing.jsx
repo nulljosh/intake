@@ -11,12 +11,12 @@ export default function Sharing() {
   function summaryText() {
     const stack = [...new Set(getActive().map(e => name(e.substanceId)))];
     const recent = getEntries().slice(0, 20).map(e => `${new Date(e.timestamp).toLocaleDateString('en-CA')} ${name(e.substanceId)} ${e.dose}${e.unit}`);
-    return `Healstack summary\n\nActive stack: ${stack.join(', ') || 'none'}\n\nRecent doses:\n${recent.join('\n') || 'none'}`;
+    return `Intake summary\n\nActive stack: ${stack.join(', ') || 'none'}\n\nRecent doses:\n${recent.join('\n') || 'none'}`;
   }
 
   async function share() {
     const text = summaryText();
-    if (navigator.share) { try { await navigator.share({ title: 'Healstack summary', text }); } catch { /* cancelled */ } }
+    if (navigator.share) { try { await navigator.share({ title: 'Intake summary', text }); } catch { /* cancelled */ } }
     else if (navigator.clipboard) await navigator.clipboard.writeText(text);
   }
 

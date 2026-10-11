@@ -6,7 +6,7 @@ import { onRequest } from '../../functions/api/stripe.js';
 const env = { DOSE_KV: { get: vi.fn(async () => '1') }, STRIPE_PRICE_ID: 'p' };
 
 const req = (method, action, headers = {}) =>
-  new Request(`https://healstack.heyitsmejosh.com/api/stripe?action=${action}`, { method, headers });
+  new Request(`https://intake.jaybulb.com/api/stripe?action=${action}`, { method, headers });
 
 beforeEach(() => { vi.restoreAllMocks(); env.DOSE_KV.get.mockClear(); });
 
@@ -26,7 +26,7 @@ describe('stripe endpoint identity', () => {
   it('reads the id from the token, never from the query', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => Response.json({ id: 'real-user' })));
     const request = new Request(
-      'https://healstack.heyitsmejosh.com/api/stripe?action=status&userId=victim',
+      'https://intake.jaybulb.com/api/stripe?action=status&userId=victim',
       { headers: { authorization: 'Bearer good' } },
     );
     await onRequest({ request, env });

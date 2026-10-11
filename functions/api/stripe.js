@@ -10,7 +10,7 @@ function getStripe(env) {
   return stripe;
 }
 
-const ALLOWED_ORIGIN = 'https://healstack.heyitsmejosh.com';
+const ALLOWED_ORIGIN = 'https://intake.jaybulb.com';
 
 // Identity comes from the caller's spark-api access token, never from a body/query field.
 // A client-supplied userId let anyone read another account's pro status and open a
@@ -18,7 +18,7 @@ const ALLOWED_ORIGIN = 'https://healstack.heyitsmejosh.com';
 // ponytail: one /auth/user round-trip per call rather than local JWT verification --
 // no crypto here, and spark-api is already a hard dependency of every request.
 // Verify the signature locally only if this endpoint ever gets hot enough to care.
-const API_URL = 'https://api.heyitsmejosh.com';
+const API_URL = 'https://api.jaybulb.com';
 
 async function callerId(request, env) {
   const auth = request.headers.get('authorization') || '';

@@ -20,7 +20,7 @@ const env = {
   STRIPE_SECRET_KEY: 'sk_test', STRIPE_WEBHOOK_SECRET: 'whsec', STRIPE_PRICE_ID: 'price_real',
 };
 const post = (body = '{}') =>
-  new Request('https://healstack.heyitsmejosh.com/api/stripe-webhook', {
+  new Request('https://intake.jaybulb.com/api/stripe-webhook', {
     method: 'POST', headers: { 'stripe-signature': 'sig' }, body,
   });
 
@@ -54,7 +54,7 @@ describe('stripe webhook', () => {
 describe('checkout config guard', () => {
   it('says payments are unconfigured instead of dying inside the SDK', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => Response.json({ id: 'user-42' })));
-    const request = new Request('https://healstack.heyitsmejosh.com/api/stripe?action=checkout', {
+    const request = new Request('https://intake.jaybulb.com/api/stripe?action=checkout', {
       method: 'POST', headers: { authorization: 'Bearer good' },
     });
     const res = await onRequest({ request, env: { ...env, STRIPE_SECRET_KEY: undefined } });

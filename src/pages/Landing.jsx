@@ -162,7 +162,7 @@ export default function Landing({ onGetStarted }) {
         <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0.9rem clamp(1.25rem, 4vw, 1.5rem)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.05rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
             <img src="/icon.svg" alt="" width="32" height="32" style={{ flexShrink: 0 }} />
-            Healstack
+            Intake
           </div>
           <button
             onClick={onGetStarted}
@@ -219,12 +219,12 @@ export default function Landing({ onGetStarted }) {
           <div style={{ display: 'flex', gap: 'clamp(0.5rem, 2vw, 1rem)', width: '100%', maxWidth: 376, justifyContent: 'center' }}>
             <img
               src="/screenshots/web-summary.png"
-              alt="Healstack dashboard"
+              alt="Intake dashboard"
               style={{ width: '100%', maxWidth: 180, minWidth: 0, height: 'auto', borderRadius: 28, border: '1px solid var(--border)' }}
             />
             <img
               src="/screenshots/web-insights.png"
-              alt="Healstack insights"
+              alt="Intake insights"
               style={{ width: '100%', maxWidth: 180, minWidth: 0, height: 'auto', borderRadius: 28, border: '1px solid var(--border)', transform: 'translateY(20px)' }}
             />
           </div>
@@ -280,7 +280,7 @@ export default function Landing({ onGetStarted }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '1.25rem' }}>
           {[
-            { name: 'Web', status: 'Live', detail: 'healstack.heyitsmejosh.com', live: true },
+            { name: 'Web', status: 'Live', detail: 'intake.jaybulb.com', live: true },
             { name: 'iOS', status: 'Live', detail: 'On the App Store, iOS 17 and up', live: true },
           ].map(p => (
             <div key={p.name} style={{ padding: '1.5rem', background: 'var(--bg-secondary)', border: '1px solid var(--border)', borderRadius: 14 }}>
@@ -296,14 +296,14 @@ export default function Landing({ onGetStarted }) {
         </div>
       </section>
 
-      <InstallAnywhere name="Healstack" appUrl="https://healstack.heyitsmejosh.com" appStoreUrl="https://apps.apple.com/app/id6785764864" />
+      <InstallAnywhere name="Intake" appUrl="https://intake.jaybulb.com" appStoreUrl="https://apps.apple.com/app/id6785764864" />
 
       {/* Footer */}
       <footer className="lp-foot">
-  <div className="foot-rule" aria-hidden="true"><span>Healstack</span><span>Track what works</span></div>
+  <div className="foot-rule" aria-hidden="true"><span>Intake</span><span>Track what works</span></div>
   <nav className="foot-dir" aria-label="Footer">
     <div className="foot-col">
-      <h3>Healstack</h3>
+      <h3>Intake</h3>
       <ul>
         <li><a href="https://apps.apple.com/app/id6785764864">App Store</a></li>
         <li><a href="/">Open the web app</a></li>
@@ -314,7 +314,7 @@ export default function Landing({ onGetStarted }) {
       <h3>Explore</h3>
       <ul>
         <li><a href="#install-anywhere">Install anywhere</a></li>
-        <li><a href="https://heyitsmejosh.com/docs.html#healstack">Docs</a></li>
+        <li><a href="https://jaybulb.com/docs.html#healstack">Docs</a></li>
       </ul>
     </div>
     <div className="foot-col">
@@ -334,13 +334,13 @@ export default function Landing({ onGetStarted }) {
         <li><a href="/tos.html">Terms</a></li>
         <li><a href="https://github.com/nulljosh/intake/blob/main/SECURITY.md">Security</a></li>
         <li><a href="https://github.com/nulljosh/intake/blob/main/LICENSE">License (MIT)</a></li>
-        <li><a href="https://heyitsmejosh.com">Portfolio</a></li>
+        <li><a href="https://jaybulb.com">Portfolio</a></li>
         <li><a href="#top">Back to top</a></li>
       </ul>
     </div>
   </nav>
   <div className="foot-bar">
-    <p className="foot-meta">Healstack{typeof __APP_VERSION__ !== 'undefined' ? ` v${__APP_VERSION__}` : ''} · MIT License · © 2026 Joshua Trommel · Made with <span aria-hidden="true">♥</span> in Vancouver, BC</p>
+    <p className="foot-meta">Intake{typeof __APP_VERSION__ !== 'undefined' ? ` v${__APP_VERSION__}` : ''} · MIT License · © 2026 Joshua Trommel · Made with <span aria-hidden="true">♥</span> in Vancouver, BC</p>
   </div>
 </footer>
     </main>

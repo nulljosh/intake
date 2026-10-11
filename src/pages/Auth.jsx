@@ -25,7 +25,7 @@ export default function Auth() {
       if (error) setError(error.message);
     } else {
       const { error } = await spark.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://healstack.heyitsmejosh.com/',
+        redirectTo: 'https://intake.jaybulb.com/',
       });
       if (error) setError(error.message);
       else setMessage('Check your email for a reset link');
@@ -55,7 +55,7 @@ export default function Auth() {
               <path d="M20 21a8 8 0 1 0-16 0"/>
             </svg>
           </div>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>Healstack</h1>
+          <h1 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>Intake</h1>
           <p style={{ fontSize: '0.83rem', color: 'var(--text-tertiary)', margin: '4px 0 0' }}>Health tracker</p>
         </div>
 
