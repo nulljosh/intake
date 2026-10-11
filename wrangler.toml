@@ -9,4 +9,3 @@ preview_id = "933180aeff6b45e58e39b258b2fbe25b"
 
 [vars]
 ALLOWED_ORIGIN = "https://healstack.heyitsmejosh.com"
-# Public anon key -- the functions need it as the apikey on /auth/v1/user token checks.
