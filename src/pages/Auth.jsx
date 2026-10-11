@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { spark } from '../lib/spark';
 
 export default function Auth() {
   const [tab, setTab] = useState('login');
@@ -17,14 +17,14 @@ export default function Auth() {
     setLoading(true);
 
     if (tab === 'login') {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await spark.auth.signInWithPassword({ email, password });
       if (error) setError(error.message);
     } else if (tab === 'register') {
       if (!tosChecked) { setError('You must agree to the Terms of Service'); setLoading(false); return; }
-      const { error } = await supabase.auth.signUp({ email, password });
+      const { error } = await spark.auth.signUp({ email, password });
       if (error) setError(error.message);
     } else {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await spark.auth.resetPasswordForEmail(email, {
         redirectTo: 'https://healstack.heyitsmejosh.com/',
       });
       if (error) setError(error.message);
@@ -96,35 +96,6 @@ export default function Auth() {
           </p>
         )}
 
-        <button
-          type="button"
-          onClick={() => supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: window.location.origin } })}
-          style={{ width: '100%', padding: '10px', background: '#24292e', color: '#fff', border: 'none', borderRadius: 8, fontSize: '0.83rem', fontWeight: 500, cursor: 'pointer', marginBottom: 10, fontFamily: 'inherit' }}
-        >
-          Sign in with GitHub
-        </button>
-        <button
-          type="button"
-          onClick={() => supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } })}
-          style={{ width: '100%', padding: '10px', background: '#fff', color: '#1a1a1a', border: '1px solid var(--border)', borderRadius: 8, fontSize: '0.83rem', fontWeight: 500, cursor: 'pointer', marginBottom: 10, fontFamily: 'inherit' }}
-        >
-          Sign in with Google
-        </button>
-        <button
-          type="button"
-          onClick={() => supabase.auth.signInWithOAuth({ provider: 'apple', options: { redirectTo: window.location.origin } })}
-          style={{ width: '100%', padding: '10px', background: '#000', color: '#fff', border: 'none', borderRadius: 8, fontSize: '0.83rem', fontWeight: 500, cursor: 'pointer', marginBottom: 10, fontFamily: 'inherit' }}
-        >
-          Sign in with Apple
-        </button>
-        <button
-          type="button"
-          onClick={() => supabase.auth.signInWithOAuth({ provider: 'facebook', options: { redirectTo: window.location.origin } })}
-          style={{ width: '100%', padding: '10px', background: '#1877F2', color: '#fff', border: 'none', borderRadius: 8, fontSize: '0.83rem', fontWeight: 500, cursor: 'pointer', marginBottom: 10, fontFamily: 'inherit' }}
-        >
-          Sign in with Facebook
-        </button>
-        <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-tertiary)', marginBottom: 10 }}>or</div>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <input
             className="input"
@@ -143,7 +114,7 @@ export default function Auth() {
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              minLength={6}
+              minLength={8}
               autoComplete={tab === 'login' ? 'current-password' : 'new-password'}
             />
           )}

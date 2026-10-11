@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { spark } from '../lib/spark';
 import { useAuth } from '../context/AuthContext';
 
 export default function ResetPassword() {
@@ -14,7 +14,7 @@ export default function ResetPassword() {
     if (password !== confirm) { setError('Passwords do not match'); return; }
     setError('');
     setLoading(true);
-    const { error } = await supabase.auth.updateUser({ password });
+    const { error } = await spark.auth.updateUser({ password });
     setLoading(false);
     if (error) { setError(error.message); return; }
     clearPasswordRecovery();
@@ -43,7 +43,7 @@ export default function ResetPassword() {
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
-            minLength={6}
+            minLength={8}
             autoComplete="new-password"
           />
           <input
@@ -53,7 +53,7 @@ export default function ResetPassword() {
             value={confirm}
             onChange={e => setConfirm(e.target.value)}
             required
-            minLength={6}
+            minLength={8}
             autoComplete="new-password"
           />
 

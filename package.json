@@ -19,7 +19,6 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.106.2",
     "chart.js": "^4.4.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.2.0",

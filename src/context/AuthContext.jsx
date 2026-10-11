@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { spark } from '../lib/spark';
 
 const AuthContext = createContext(null);
 
@@ -9,12 +9,12 @@ export function AuthProvider({ children }) {
   const [isPasswordRecovery, setIsPasswordRecovery] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    spark.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = spark.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
       if (event === 'PASSWORD_RECOVERY') setIsPasswordRecovery(true);
     });
@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function signOut() {
-    await supabase.auth.signOut();
+    await spark.auth.signOut();
   }
 
   function clearPasswordRecovery() {

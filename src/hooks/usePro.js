@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabase';
+import { spark } from '../lib/spark';
 
 // The server derives the user id from this token; it no longer trusts a userId we send.
 async function authHeader() {
-  const { data } = await supabase.auth.getSession();
+  const { data } = await spark.auth.getSession();
   const token = data?.session?.access_token;
   return token ? { Authorization: `Bearer ${token}` } : null;
 }
