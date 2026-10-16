@@ -570,3 +570,7 @@ Sidebar routing on macOS was broken (navigationDestination in the sidebar column
 
 ## Ingested 2026-10-01
 - [ ] App Review flagged an issue with iOS 2.3.6 (submitted Sep 12 2026 via API key, submission 6ae57416-d5bc-4b2b-8b19-23402fcedec6). Read the reason in App Review and resolve. (screenshot: notes/attachments/2026-10-01/healstack-1.png)
+
+## Ingested 2026-10-16
+- [ ] Stale App Store name: the live listing still says Healstack (iOS 2.3.6 ready for distribution, macOS 2.3.5 in review). (screenshots: notes/attachments/2026-10-16/intake-2.png, notes/attachments/2026-10-16/intake-3.png)
+- [ ] Stale App Store name: the live listing still says Healstack (iOS 2.3.6 ready for distribution, macOS 2.3.5 in review). (screenshots: notes/attachments/2026-10-16/intake-2.png, notes/attachments/2026-10-16/intake-3.png)
