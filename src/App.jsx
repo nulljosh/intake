@@ -29,10 +29,11 @@ import Sharing from './pages/Sharing';
 import WhatsNew from './components/WhatsNew';
 import { WebMCP } from './lib/webmcp';
 
-function ThemeToggle({ theme, setTheme }) {
+function ThemeToggle({ theme, setTheme, style }) {
   return (
     <button
       className="theme-toggle"
+      style={style}
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       aria-label="Toggle theme"
     >
@@ -54,7 +55,7 @@ function AppShell({ theme, setTheme }) {
 
   if (loading) return null;
   if (isPasswordRecovery) return <ResetPassword />;
-  if (!user) return showAuth ? <Auth /> : <Landing onGetStarted={() => setShowAuth(true)} />;
+  if (!user) return showAuth ? <Auth /> : <Landing onGetStarted={() => setShowAuth(true)} toggle={<ThemeToggle theme={theme} setTheme={setTheme} style={{ position: 'static' }} />} />;
 
   return (
     <SessionProvider>

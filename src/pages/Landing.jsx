@@ -120,7 +120,7 @@ const SHOWCASE = [
   { shot: 'sharing', kicker: 'Sharing', title: 'Hand it to your doctor.', body: 'Send a summary, print it, or export the whole log. Nothing leaves your device until you tap.', alt: 'Sharing screen' },
 ];
 
-export default function Landing({ onGetStarted }) {
+export default function Landing({ onGetStarted, toggle }) {
   const wallRef = useRef(null);
   const [featuresRef, featuresIn] = useRevealOnScroll();
   const [platformsRef, platformsIn] = useRevealOnScroll();
@@ -164,6 +164,8 @@ export default function Landing({ onGetStarted }) {
             <img src="/icon.svg" alt="" width="32" height="32" style={{ flexShrink: 0 }} />
             Intake
           </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            {toggle}
           <button
             onClick={onGetStarted}
             style={{
@@ -173,6 +175,7 @@ export default function Landing({ onGetStarted }) {
           >
             Get started
           </button>
+          </div>
         </div>
       </header>
 
@@ -209,10 +212,6 @@ export default function Landing({ onGetStarted }) {
             >
               Sign in
             </button>
-          </div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', padding: '0.5rem 0.9rem', borderRadius: 999, background: 'var(--bg-secondary)', border: '1px solid var(--border)', fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--success)', flexShrink: 0 }} />
-            Web + iOS app · private
           </div>
         </div>
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', minWidth: 0 }}>
