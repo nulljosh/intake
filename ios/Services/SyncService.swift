@@ -20,7 +20,7 @@ final class SyncService {
     var isConfigured: Bool { syncEnabled }
 
     private var baseURL: URL {
-        URL(string: "https://healstack.heyitsmejosh.com/api/sync")!
+        URL(string: "https://healstack.jaybulb.com/api/sync")!
     }
 
     init() {
