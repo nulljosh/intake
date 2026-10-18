@@ -1,5 +1,7 @@
 # Intake Roadmap
 
+> Priority tier 2 (2026-10-17): ship push, this week. Order: live blockers, ship pushes, active features, portfolio, exploratory. See ~/Documents/Code/LOOP-HANDOFF.md.
+
 ## 2026-08-28, iOS 2.3.5 REJECTED under 4.3(a) spam; appeal drafted, do NOT resubmit
 Apple rejected iOS 2.3.5 at 15:14 UTC under Guideline 4.3(a) Design: Spam (submission
 `26e3f066-3572-4409-a386-1b14825a1eea`, thread `eecf3184-0467-32af-8c0a-3bf0ba28ea27`). This is
