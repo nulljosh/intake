@@ -1,0 +1,7 @@
+/* Intake brand tokens. The accent is the only colour this app owns; spacing, radii and type come from the shared system. */
+:root {
+  --accent: #5c9e12;
+  --accent-light: #a8de4c;
+  --accent-deep: #5c9e12;
+  --accent-ring: color-mix(in srgb, #5c9e12 30%, transparent);
+}
