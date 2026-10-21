@@ -1,6 +1,6 @@
 import XCTest
 import UserNotifications
-@testable import Dose
+@testable import Healstack
 
 /// These never call `requestAuthorization()`. It presents a system permission alert that
 /// nothing dismisses under `xcodebuild test`, which hung the whole suite indefinitely.

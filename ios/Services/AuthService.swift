@@ -1,48 +1,37 @@
 import AuthenticationServices
 import CryptoKit
-import Supabase
 import Foundation
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
-private func infoPlistValue(_ key: String) -> String? {
-    guard let value = Bundle.main.object(forInfoDictionaryKey: key) as? String,
-          !value.isEmpty,
-          !value.hasPrefix("$(") else { return nil }
-    return value
-}
-
-/// Non-nil when the bundle is missing its Supabase config. Surfaced in the UI instead of
-/// crashing: a `fatalError` here shipped a macOS build that died the moment sign-in loaded,
-/// which is what App Review saw as "Sign In will load briefly and then stops".
-let supabaseConfigError: String? = {
-    let missing = ["SUPABASE_URL", "SUPABASE_ANON_KEY"].filter { infoPlistValue($0) == nil }
-    guard !missing.isEmpty else { return nil }
-    return "App is misconfigured (missing \(missing.joined(separator: ", "))). Please reinstall or contact support."
-}()
-
-/// Sign in with Apple is OFF until the Apple provider is enabled on the shared `spark`
-/// Supabase project. Proven disabled 2026-08-18 by a live probe: posting an Apple-issued
-/// `iss` to `/auth/v1/token?grant_type=id_token` returns
-/// `provider_disabled — Provider (issuer "https://appleid.apple.com") is not enabled`.
-/// Shipping the button anyway means every reviewer who taps it gets an error, which is
-/// exactly the "Unable to log in" defect that got v1.0 rejected under 2.1(a).
-/// Enabled 2026-10-03: the shared Supabase project has the Apple provider on and
-/// `com.heyitsmejosh.dose` in its client ID list. Native needs no Apple key. It also keeps
-/// Guideline 4.8 satisfied now that Google sign-in is offered on iOS.
+/// Sign in with Apple. jaybulb-api lists `com.heyitsmejosh.dose` in APPLE_AUDIENCES, so the native
+/// button works with no Apple key on the device. It also keeps Guideline 4.8 satisfied while Google
+/// sign-in is offered.
 /// ponytail: a flag, not a build config. One edit turns it off, and the code stays compiled.
 let appleSignInEnabled = true
 
-let supabaseClient = SupabaseClient(
-    supabaseURL: URL(string: infoPlistValue("SUPABASE_URL") ?? "https://unconfigured.invalid")!,
-    supabaseKey: infoPlistValue("SUPABASE_ANON_KEY") ?? "unconfigured"
-)
+/// The signed-in account: the same one the web app uses.
+struct User: Equatable {
+    let id: String
+    let email: String?
+}
 
+/// Sign-in, sign-up, reset and delete against jaybulb-api on Cloudflare (moved off Supabase 2026-10-21).
+/// Same surface the views used before, so only this file and API.swift know where accounts live.
 @Observable
 @MainActor
 final class AuthService {
     var user: User? = nil
     var isLoading = true
+    /// Password resets finish on the web now (the email link opens machaon.jaybulb.com), so this stays
+    /// false; NewPasswordView remains for a signed-in password change.
     var isPasswordRecovery = false
     private var currentNonce: String?
+    private var webSession: ASWebAuthenticationSession?
+    private let api = API.shared
 
     init() {
         if CommandLine.isUITestSnapshot {
@@ -50,76 +39,48 @@ final class AuthService {
             return
         }
         Task { @MainActor in
-            for await (event, session) in supabaseClient.auth.authStateChanges {
-                switch event {
-                case .initialSession:
-                    user = session?.user
-                    isLoading = false
-                case .signedIn:
-                    user = session?.user
-                case .signedOut:
-                    user = nil
-                    isPasswordRecovery = false
-                case .passwordRecovery:
-                    user = session?.user
-                    isPasswordRecovery = true
-                default:
-                    break
-                }
-            }
+            if await api.refresh() { syncUser() }
+            isLoading = false
         }
     }
 
-    /// Every network-backed entry point routes through this, so a misconfigured bundle
-    /// reports one readable error instead of failing differently per call site.
-    private func requireConfig() throws {
-        if let message = supabaseConfigError {
-            throw NSError(domain: "AuthService", code: -2, userInfo: [NSLocalizedDescriptionKey: message])
-        }
+    private func syncUser() {
+        user = api.userId.map { User(id: $0, email: api.email) }
     }
 
     func signIn(email: String, password: String) async throws {
-        try requireConfig()
-        let session = try await supabaseClient.auth.signIn(email: email, password: password)
-        user = session.user
+        try await api.signIn(email: email, password: password)
+        syncUser()
     }
 
+    /// New accounts confirm their email before the first sign-in.
     func signUp(email: String, password: String) async throws {
-        try requireConfig()
-        let response = try await supabaseClient.auth.signUp(email: email, password: password)
-        // The project auto-confirms, so sign-up yields a session immediately; without this the
-        // user is left staring at the auth screen after a successful registration.
-        if response.session != nil { user = response.user }
+        try await api.signUp(email: email, password: password)
+        do {
+            try await api.signIn(email: email, password: password)
+            syncUser()
+        } catch {
+            throw NSError(domain: "AuthService", code: 1, userInfo: [NSLocalizedDescriptionKey:
+                "Check your email to confirm your account, then sign in."])
+        }
     }
 
     func signOut() async throws {
-        try await supabaseClient.auth.signOut()
+        await api.signOut()
+        user = nil
+        isPasswordRecovery = false
+    }
+
+    func deleteAccount() async throws {
+        try await api.deleteAccount()
         user = nil
     }
 
-    /// Calls the shared `delete-account` Edge Function on the spark Supabase project,
-    /// which uses the service-role key to delete the authenticated user server-side
-    /// (the anon-key client SDK has no permission to delete its own auth user).
-    func deleteAccount() async throws {
-        let session = try await supabaseClient.auth.session
-        var request = URLRequest(url: URL(string: "https://tjsxsqlxjmanwvmywwvw.supabase.co/functions/v1/delete-account")!)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: "Authorization")
-        let (_, response) = try await URLSession.shared.data(for: request)
-        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
-            throw NSError(domain: "AuthService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Couldn't delete account. Try again."])
-        }
-        try await signOut()
-    }
-
     func resetPassword(email: String) async throws {
-        try await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            redirectTo: URL(string: "healstack://")!
-        )
+        try await api.recover(email: email)
     }
 
-    /// Apple hashes the nonce into the identity token; Supabase compares it against the raw
+    /// Apple hashes the nonce into the identity token; jaybulb-api compares it against the raw
     /// value we send back. Call this from the `SignInWithAppleButton` request closure.
     func prepareAppleRequest(_ request: ASAuthorizationAppleIDRequest) {
         let nonce = Self.randomNonce()
@@ -131,30 +92,31 @@ final class AuthService {
     }
 
     func signInWithApple(result: Result<ASAuthorization, Error>) async throws {
-        try requireConfig()
         let auth = try result.get()
         guard let cred = auth.credential as? ASAuthorizationAppleIDCredential,
               let tokenData = cred.identityToken,
               let token = String(data: tokenData, encoding: .utf8) else {
             throw URLError(.badServerResponse)
         }
-        let session = try await supabaseClient.auth.signInWithIdToken(
-            credentials: .init(provider: .apple, idToken: token, nonce: currentNonce)
-        )
+        try await api.signIn(provider: "apple", idToken: token, nonce: currentNonce)
         currentNonce = nil
-        user = session.user
+        syncUser()
     }
 
-    /// Google has no native ID-token path here, so this uses the OAuth browser flow.
-    /// `dose://` must stay in the Supabase project's uri_allow_list and in CFBundleURLSchemes
-    /// on both platforms, or the callback lands nowhere and the session never arrives.
+    /// Google: the OAuth code flow in the system web sheet, then the ID token goes to jaybulb-api.
     func signInWithGoogle() async throws {
-        try requireConfig()
-        try await supabaseClient.auth.signInWithOAuth(
-            provider: .google,
-            redirectTo: URL(string: "healstack://")
-        )
-        user = try await supabaseClient.auth.session.user
+        let url = api.googleURL()
+        let callback: URL = try await withCheckedThrowingContinuation { cont in
+            let session = ASWebAuthenticationSession(url: url, callbackURLScheme: API.googleScheme) { url, error in
+                if let url { cont.resume(returning: url) } else { cont.resume(throwing: error ?? URLError(.userCancelledAuthentication)) }
+            }
+            session.presentationContextProvider = WebAuthAnchor.shared
+            webSession = session
+            session.start()
+        }
+        webSession = nil
+        try await api.finishGoogle(callback)
+        syncUser()
     }
 
     static func randomNonce(length: Int = 32) -> String {
@@ -169,9 +131,19 @@ final class AuthService {
     }
 
     func updatePassword(_ newPassword: String) async throws {
-        try await supabaseClient.auth.update(
-            user: UserAttributes(password: newPassword)
-        )
+        try await api.updatePassword(newPassword)
         isPasswordRecovery = false
+    }
+}
+
+/// Where the Google web sheet attaches: the app's key window.
+private final class WebAuthAnchor: NSObject, ASWebAuthenticationPresentationContextProviding {
+    static let shared = WebAuthAnchor()
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        #if os(iOS)
+        UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.first ?? ASPresentationAnchor()
+        #else
+        NSApplication.shared.keyWindow ?? ASPresentationAnchor()
+        #endif
     }
 }

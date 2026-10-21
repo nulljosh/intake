@@ -1,12 +1,13 @@
 import XCTest
-@testable import Dose
+@testable import Healstack
 
-/// Guards the two things that shipped broken and got the app rejected: a bundle without
-/// Supabase config (which used to `fatalError` at launch) and a nonce-less Apple sign-in.
+/// Guards what shipped broken before: sign-in pointing somewhere other than the account the web
+/// app uses, and a nonce-less Apple sign-in.
 @MainActor
 final class AuthConfigTests: XCTestCase {
-    func testBundleCarriesSupabaseConfig() {
-        XCTAssertNil(supabaseConfigError, supabaseConfigError ?? "")
+    func testSignsInAgainstJaybulbAPI() {
+        XCTAssertEqual(API.base, "https://api.jaybulb.com")
+        XCTAssertTrue(API.googleScheme.hasPrefix("com.googleusercontent.apps."))
     }
 
     func testNonceIsUniqueAndCorrectLength() {

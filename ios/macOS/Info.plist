@@ -40,9 +40,5 @@
 	<string>Unlock Machaon with Touch ID</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>2026 Joshua Trommel</string>
-	<key>SUPABASE_ANON_KEY</key>
-	<string>$(SUPABASE_ANON_KEY)</string>
-	<key>SUPABASE_URL</key>
-	<string>$(SUPABASE_URL)</string>
 </dict>
 </plist>

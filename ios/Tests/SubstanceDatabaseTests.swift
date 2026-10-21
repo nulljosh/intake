@@ -1,5 +1,5 @@
 import XCTest
-@testable import Dose
+@testable import Healstack
 
 final class SubstanceDatabaseTests: XCTestCase {
     func testSearchReturnsResultsForCaffeine() {

@@ -1,8 +1,5 @@
 name: Healstack
 packages:
-  Supabase:
-    url: https://github.com/supabase/supabase-swift.git
-    from: "2.5.1"
   SwiftLint:
     url: https://github.com/realm/SwiftLint
     from: "0.59.1"
@@ -53,8 +50,6 @@ targets:
     dependencies:
       - sdk: HealthKit.framework
       - target: DoseWidgetExtension
-      - package: Supabase
-        product: Supabase
     buildToolPlugins:
       - plugin: SwiftLintBuildToolPlugin
         package: SwiftLint
@@ -74,8 +69,6 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.dose
       INFOPLIST_KEY_CFBundleDisplayName: Machaon
       CODE_SIGN_ENTITLEMENTS: Healstack.entitlements
-      SUPABASE_URL: https://tjsxsqlxjmanwvmywwvw.supabase.co
-      SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68
 
   Healstack-macOS:
     type: application
@@ -110,9 +103,6 @@ targets:
           - scripts
           - .asc
           - fastlane
-    dependencies:
-      - package: Supabase
-        product: Supabase
     buildToolPlugins:
       - plugin: SwiftLintBuildToolPlugin
         package: SwiftLint
@@ -125,8 +115,6 @@ targets:
       ENABLE_HARDENED_RUNTIME: YES
       ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       CODE_SIGN_ENTITLEMENTS: macOS/Healstack-macOS.entitlements
-      SUPABASE_URL: https://tjsxsqlxjmanwvmywwvw.supabase.co
-      SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68
 
   HealstackTests:
     type: bundle.unit-test

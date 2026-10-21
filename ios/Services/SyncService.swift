@@ -34,7 +34,7 @@ final class SyncService {
 
     func push(dataStore: DataStore) async {
         guard isConfigured else { return }
-        guard let session = try? await supabaseClient.auth.session else {
+        guard let accessToken = await API.shared.accessToken() else {
             lastError = "Not signed in"
             return
         }
@@ -56,7 +56,7 @@ final class SyncService {
         do {
             var request = URLRequest(url: baseURL)
             request.httpMethod = "PUT"
-            request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = try JSONEncoder().encode(payload)
 
@@ -86,7 +86,7 @@ final class SyncService {
 
     func pull(dataStore: DataStore) async {
         guard isConfigured else { return }
-        guard let session = try? await supabaseClient.auth.session else {
+        guard let accessToken = await API.shared.accessToken() else {
             lastError = "Not signed in"
             return
         }
@@ -97,7 +97,7 @@ final class SyncService {
         do {
             var request = URLRequest(url: baseURL)
             request.httpMethod = "GET"
-            request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let http = response as? HTTPURLResponse else { throw SyncError.invalidResponse }

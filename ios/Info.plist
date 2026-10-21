@@ -40,10 +40,6 @@
 	<string>Machaon reads your health data to track biometrics alongside your supplement and medication log.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Machaon does not write to Health, but the HealthKit framework requires this description to be present.</string>
-	<key>SUPABASE_ANON_KEY</key>
-	<string>$(SUPABASE_ANON_KEY)</string>
-	<key>SUPABASE_URL</key>
-	<string>$(SUPABASE_URL)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
