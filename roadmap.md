@@ -579,3 +579,4 @@ Sidebar routing on macOS was broken (navigationDestination in the sidebar column
 ## Ingested 2026-10-21
 - [ ] Needs a better name (Greek god of medicine). Note: already renamed Intake; store listing still Healstack, see the stale name item above.
 - [x] Nav bar should be native SwiftUI, not custom (done 2026-10-21: custom floating bar removed, plain TabView bar; compiled, not run on device). It overrides content so we can't see stuff: the floating tab bar covers the Save Note button on the Notes screen. (screenshot: notes/attachments/2026-10-21/healstack-1.png)
+- [ ] New stethoscope icon and clrs.cc blue accent (#0074D9) need a new App Store build to show on the store.

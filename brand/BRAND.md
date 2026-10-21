@@ -1,6 +1,6 @@
 # Intake brand kit and design system
 
-Intake tracks supplements and symptoms. The mark is a capsule.
+A stethoscope: the doctor in your pocket
 
 ## The mark
 One bold flat white glyph on an accent gradient tile. No text, no outline, no emblem.
@@ -13,8 +13,8 @@ One bold flat white glyph on an accent gradient tile. No text, no outline, no em
 ## Colour
 | Role | Value |
 |---|---|
-| Accent | `#5c9e12` |
-| Gradient top | `#a8de4c` |
+| Accent | `#0074D9` |
+| Gradient top | `#3d9bf0` |
 | Text | `#1d1d1f` light, `#f5f5f7` dark |
 | Background | `#ffffff` light, `#000000` dark |
 | Surface | `#f5f5f7` light, `#1c1c1e` dark |
