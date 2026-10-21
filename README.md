@@ -1,8 +1,8 @@
-<img src="icon.svg" width="80" height="80" alt="Intake icon">
+<img src="icon.svg" width="80" height="80" alt="Machaon icon">
 
-![version](https://img.shields.io/badge/version-v2.4.0-0074D9) [![tests](https://github.com/nulljosh/intake/actions/workflows/test.yml/badge.svg)](https://github.com/nulljosh/intake/actions/workflows/test.yml) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0074D9?logo=apple&logoColor=white)](https://apps.apple.com/app/id6785764864) ![license](https://img.shields.io/badge/license-Apache%202.0-0074D9)
+![version](https://img.shields.io/badge/version-v2.4.0-0074D9) [![tests](https://github.com/nulljosh/machaon/actions/workflows/test.yml/badge.svg)](https://github.com/nulljosh/machaon/actions/workflows/test.yml) [![App Store](https://img.shields.io/badge/App%20Store-iPhone%20%26%20iPad-0074D9?logo=apple&logoColor=white)](https://apps.apple.com/app/id6785764864) ![license](https://img.shields.io/badge/license-Apache%202.0-0074D9)
 
-Track what you take, and what it does. A dose log, a harm reduction library and a health dashboard. Your data stays on your device and syncs to your account.
+Track what you take, and what it does. Formerly Intake and Healstack. A dose log, a harm reduction library and a health dashboard. Your data stays on your device and syncs to your account.
 
 <p>
 <img src="screenshots/ios/home.png" width="200" alt="Home">

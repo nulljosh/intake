@@ -1,4 +1,4 @@
-const ALLOWED_ORIGIN = 'https://intake.jaybulb.com';
+const ALLOWED_ORIGIN = 'https://machaon.jaybulb.com';
 
 function timingSafeEqual(a, b) {
   if (a.length !== b.length) return false;

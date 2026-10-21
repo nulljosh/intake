@@ -1,11 +1,11 @@
-"""Intake Sans: Inter (Rasmus Andersson, SIL Open Font License 1.1, no reserved name), renamed.
+"""Machaon Sans: Inter (Rasmus Andersson, SIL Open Font License 1.1, no reserved name), renamed.
 Inter is drawn in the spirit of San Francisco and Helvetica: open shapes, even proportional spacing, built for screens.
 
 Same method as Hermes Sans, coda's Quip Sans and turing's Samantha Sans: pinned release, renamed, OFL shipped beside
 the fonts, original copyright kept in the name table, fixed timestamps so every build is the same bytes.
 
-    python3 scripts/gen_font.py            # writes public/fonts/IntakeSans-{Thin,ExtraLight,Light,Regular,Medium,Semibold,Bold}.woff2 + OFL.txt
-    python3 scripts/gen_font.py --check    # named Intake Sans, OFL present, original copyright kept
+    python3 scripts/gen_font.py            # writes public/fonts/MachaonSans-{Thin,ExtraLight,Light,Regular,Medium,Semibold,Bold}.woff2 + OFL.txt
+    python3 scripts/gen_font.py --check    # named Machaon Sans, OFL present, original copyright kept
 Needs fonttools and brotli (uv run --with fonttools --with brotli).
 """
 import io
@@ -28,9 +28,9 @@ def fetch(path):
 
 
 def rename(font, style):
-    """Give the outlines the Intake Sans name; copyright (0) and license (13, 14) stay as the authors wrote them."""
-    names = {1: "Intake Sans", 2: style, 3: f"IntakeSans-{style}", 4: f"Intake Sans {style}", 5: "Version 1.000",
-             6: f"IntakeSans-{style}", 16: "Intake Sans", 17: style}
+    """Give the outlines the Machaon Sans name; copyright (0) and license (13, 14) stay as the authors wrote them."""
+    names = {1: "Machaon Sans", 2: style, 3: f"MachaonSans-{style}", 4: f"Machaon Sans {style}", 5: "Version 1.000",
+             6: f"MachaonSans-{style}", 16: "Machaon Sans", 17: style}
     table = font["name"]
     table.names = [n for n in table.names if n.nameID in (0, 13, 14)]
     for nid, text in names.items():
@@ -44,11 +44,11 @@ def check():
     """Self-check of the shipped files."""
     assert os.path.exists(os.path.join(OUT, "OFL.txt")), "the OFL must ship with the fonts"
     for style in WEIGHTS:
-        f = TTFont(os.path.join(OUT, f"IntakeSans-{style}.woff2"))
-        assert f["name"].getDebugName(1) == "Intake Sans", "family name"
-        assert f["name"].getDebugName(6) == f"IntakeSans-{style}", "postscript name"
+        f = TTFont(os.path.join(OUT, f"MachaonSans-{style}.woff2"))
+        assert f["name"].getDebugName(1) == "Machaon Sans", "family name"
+        assert f["name"].getDebugName(6) == f"MachaonSans-{style}", "postscript name"
         assert f["name"].getDebugName(0), "the original copyright must stay in the name table"
-    print(f"font ok: Intake Sans (Inter, OFL), {len(WEIGHTS)} weights")
+    print(f"font ok: Machaon Sans (Inter, OFL), {len(WEIGHTS)} weights")
 
 
 def main():
@@ -61,8 +61,8 @@ def main():
         font = TTFont(io.BytesIO(fetch(f"files/inter-latin-{weight}-normal.woff2")))
         rename(font, style)
         font.flavor = "woff2"
-        font.save(os.path.join(OUT, f"IntakeSans-{style}.woff2"), reorderTables=False)
-        print(f"IntakeSans-{style}: Inter {weight}")
+        font.save(os.path.join(OUT, f"MachaonSans-{style}.woff2"), reorderTables=False)
+        print(f"MachaonSans-{style}: Inter {weight}")
 
 
 if __name__ == "__main__":

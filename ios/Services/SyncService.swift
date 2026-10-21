@@ -21,7 +21,7 @@ final class SyncService {
     var isConfigured: Bool { syncEnabled }
 
     private var baseURL: URL {
-        URL(string: "https://intake.jaybulb.com/api/sync")!
+        URL(string: "https://machaon.jaybulb.com/api/sync")!
     }
 
     init() {

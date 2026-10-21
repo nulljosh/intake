@@ -1,7 +1,7 @@
-# Launch checklist, Intake
+# Launch checklist, Machaon
 
 This kit is web-first: every public link (PH, HN, Reddit, X) points only to
-https://intake.jaybulb.com, no App Store link anywhere in the copy.
+https://machaon.jaybulb.com, no App Store link anywhere in the copy.
 
 Aside, for Joshua only, not for public copy: `asc versions list --app 6785764864`
 shows iOS 2.3.5 is actually READY_FOR_DISTRIBUTION / READY_FOR_SALE (live),

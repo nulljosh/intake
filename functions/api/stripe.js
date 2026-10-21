@@ -10,7 +10,7 @@ function getStripe(env) {
   return stripe;
 }
 
-const ALLOWED_ORIGIN = 'https://intake.jaybulb.com';
+const ALLOWED_ORIGIN = 'https://machaon.jaybulb.com';
 
 // Identity comes from the caller's spark-api access token, never from a body/query field.
 // A client-supplied userId let anyone read another account's pro status and open a

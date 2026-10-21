@@ -1,4 +1,4 @@
-# Intake (iOS)
+# Machaon (iOS)
 
 v2.3.3
 
@@ -34,5 +34,5 @@ xcodebuild test -scheme Healstack -project Healstack.xcodeproj -destination 'gen
 - Views/NewPasswordView.swift: password update after deep-link recovery
 - Views/DashboardView.swift: home dashboard for active stack and recent entries
 - Views/SettingsView.swift: account (email, sign out), profile, medications, sync, data export
-- 2026-10-21: the custom floating tab bar is gone; the native TabView bar is back, because the custom one covered content. In-app name is Intake; the project, scheme and targets keep the Healstack name.
+- 2026-10-21: the custom floating tab bar is gone; the native TabView bar is back, because the custom one covered content. In-app name is Machaon; the project, scheme and targets keep the Healstack name.
 - Changelog v2.3.2 (2026-06-28): Added custom DoseFloatingTabBar (regularMaterial capsule, haptics, symbolEffect bounce). Fixed tab icons: house/house.fill, books.vertical/fill, chart.line.uptrend.xyaxis.circle/fill, figure.mind.and.body, cross.vial/cross.vial.fill. Corrected always-filled icon bug (unselected tabs now use outline variants).

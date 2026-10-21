@@ -1,4 +1,4 @@
-/* Intake landing, after Hermes: a navy-black page in a thin blue frame, giant thin condensed caps,
+/* Machaon landing, after Hermes: a navy-black page in a thin blue frame, giant thin condensed caps,
    tiny caps labels, small square buttons and one full-bleed blue band. Scoped under .hl so the app's own CSS is untouched. */
 
 .hl {
@@ -6,8 +6,8 @@
   --band-sub: #d9ecfb; --band-art: #8cc6f5; --band-line: rgba(255, 255, 255, .22);
   --ring: color-mix(in srgb, var(--accent) 30%, transparent);
   --bg: #fdfdfd; --surface: #f2f4f7; --line: #dcdfe5; --text: #1a1a1a; --sub: #5a5f6b;
-  --display: "Intake Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font: "Intake Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Machaon Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: "Machaon Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --size-body: 17px; --size-footnote: 13px;
   --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
   --wrap: 1120px; --r-row: 8px; --r-pill: 999px; --r-sq: 2px; --r-icon: 22.5%; --motion: .2s ease;
@@ -216,7 +216,7 @@
 .hl .nav .btn { white-space: nowrap; }
 /* the shared install section, squared to match the landing's panels */
 .hl #install-anywhere .xp-card { border-radius: 4px; }
-/* Intake Sans is wider than a condensed face: the display sizes come down so the caps keep Hermes' proportions */
+/* Machaon Sans is wider than a condensed face: the display sizes come down so the caps keep Hermes' proportions */
 .hl h1 { font-size: clamp(72px, 12vw, 176px); letter-spacing: 0; }
 .hl h2 { font-size: clamp(44px, 6vw, 88px); letter-spacing: .01em; }
 .hl .band-copy h2 { font-size: clamp(48px, 7.5vw, 120px); }

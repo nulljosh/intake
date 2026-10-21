@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { authenticate, merge } from '../../functions/api/sync.js';
 
-const req = (token) => new Request('https://intake.jaybulb.com/api/sync', { headers: token ? { authorization: `Bearer ${token}` } : {} });
+const req = (token) => new Request('https://machaon.jaybulb.com/api/sync', { headers: token ? { authorization: `Bearer ${token}` } : {} });
 
 describe('sync auth', () => {
   it('links both sign-in services by confirmed email, and refuses everything else', async () => {

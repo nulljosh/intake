@@ -64,7 +64,7 @@ export const protocols = [
     title: 'Hydration and Sodium',
     category: 'Diet',
     difficulty: 'Daily',
-    summary: 'Reduce facial bloat by managing water and salt intake.',
+    summary: 'Reduce facial bloat by managing water and salt machaon.',
     steps: [
       '2 to 3 L water per day, more if active',
       'Cut processed foods and restaurant meals (high sodium)',

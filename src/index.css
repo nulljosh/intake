@@ -1,5 +1,5 @@
 @import url("https://jaybulb.com/tokens.css");
-/* Intake: Intake Sans (see the @font-face block near the accent), flat, clrs.cc blue accent */
+/* Machaon: Machaon Sans (see the @font-face block near the accent), flat, clrs.cc blue accent */
 :root{--bulb:var(--clay);--bulb-deep:var(--clay-deep);--accent:var(--clay);--accent-dot:var(--clay);--bg-secondary:var(--bg2);--bg-tertiary:var(--color-code-bg);--text-primary:var(--text);--text-secondary:#555555;--text-tertiary:var(--text3);--border-muted:var(--border2);--link:#a33d19;--accent-muted:color-mix(in srgb,var(--clay) 12%,transparent);--accent-border:color-mix(in srgb,var(--clay) 30%,transparent);--modal-bg:var(--bg);--glass-bg:var(--bg);--spring:cubic-bezier(0.34,1.56,0.64,1);--font:var(--font-body);--font-heading:var(--font-body);
   --danger: #dc2626;
   --danger-muted: rgba(220, 38, 38, 0.08);
@@ -1639,12 +1639,12 @@ button { user-select: none; font-family: inherit; }
 :root { --clay: #0074D9; --clay-deep: #005fb3; --link: #0066c0; }
 :root[data-theme="dark"] { --clay: #4da3ec; --clay-deep: #4da3ec; --link: #4da3ec; --accent: #4da3ec; }
 
-/* Intake Sans: Inter renamed (scripts/gen_font.py, OFL in /fonts/OFL.txt), SF and Helvetica in spirit. */
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Thin.woff2") format("woff2"); font-weight: 100; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-ExtraLight.woff2") format("woff2"); font-weight: 200; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
-@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-:root { --font: "Intake Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; --font-heading: var(--font); }
+/* Machaon Sans: Inter renamed (scripts/gen_font.py, OFL in /fonts/OFL.txt), SF and Helvetica in spirit. */
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Thin.woff2") format("woff2"); font-weight: 100; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-ExtraLight.woff2") format("woff2"); font-weight: 200; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url("/fonts/MachaonSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+:root { --font: "Machaon Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; --font-heading: var(--font); }

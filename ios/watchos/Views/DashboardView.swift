@@ -26,7 +26,7 @@ struct DashboardView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("Intake")
+            .navigationTitle("Machaon")
         }
         .onAppear { store.reload() }
     }

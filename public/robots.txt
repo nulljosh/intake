@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://intake.jaybulb.com/sitemap.xml
+Sitemap: https://machaon.jaybulb.com/sitemap.xml

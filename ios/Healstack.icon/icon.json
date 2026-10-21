@@ -24,11 +24,11 @@
         {
           "glass": false,
           "image-name": "glyph.png",
-          "name": "Intake"
+          "name": "Machaon"
         }
       ],
       "lighting": "individual",
-      "name": "Intake",
+      "name": "Machaon",
       "shadow": {
         "kind": "neutral",
         "opacity": 0.3

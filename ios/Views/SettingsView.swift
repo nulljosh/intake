@@ -74,7 +74,7 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Toggle("Sync with your Intake account", isOn: $syncService.syncEnabled)
+                    Toggle("Sync with your Machaon account", isOn: $syncService.syncEnabled)
 
                     if syncService.syncEnabled {
                         HStack {

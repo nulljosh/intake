@@ -47,7 +47,7 @@ export default function Landing({ onGetStarted, toggle }) {
           <a href="#features">Features</a>
           <a href="#get">Platforms</a>
         </nav>
-        <a className="nav-brand" href="#top" aria-label="Intake home"><img src="/icon.svg" alt="" width="28" height="28" /><span>Intake</span></a>
+        <a className="nav-brand" href="#top" aria-label="Machaon home"><img src="/icon.svg" alt="" width="28" height="28" /><span>Machaon</span></a>
         <div className="nav-end">
           {toggle}
           <button className="btn btn-solid" onClick={onGetStarted}>Get started</button>
@@ -58,7 +58,7 @@ export default function Landing({ onGetStarted, toggle }) {
         <section className="hero">
           <div className="wrap center">
             <p className="label">Supplements, medications and symptoms</p>
-            <h1>Intake</h1>
+            <h1>Machaon</h1>
             <p className="lead">Track what you take, and what it does. A private log with an interaction check before every dose.</p>
             <div className="cta">
               <button className="btn btn-solid" onClick={onGetStarted}>Start tracking</button>
@@ -71,8 +71,8 @@ export default function Landing({ onGetStarted, toggle }) {
             <div className="stage">
               <div className="art stage-art" style={{ '--img': 'url(/art/hippolytus.png)' }} aria-hidden="true" />
               <div className="shots">
-                <img src="/screenshots/ios-home.png" alt="Intake home screen" />
-                <img src="/screenshots/ios-insights.png" alt="Intake insights screen" />
+                <img src="/screenshots/ios-home.png" alt="Machaon home screen" />
+                <img src="/screenshots/ios-insights.png" alt="Machaon insights screen" />
               </div>
             </div>
             <p className="demo-hint">Real screens from the app.</p>
@@ -85,7 +85,7 @@ export default function Landing({ onGetStarted, toggle }) {
             <div className="band-copy reveal">
               <p className="label">The doctor in your pocket</p>
               <h2>Know what works</h2>
-              <p>Most trackers stop at a list. Intake shows what each dose did.</p>
+              <p>Most trackers stop at a list. Machaon shows what each dose did.</p>
             </div>
           </div>
           <div className="frows">
@@ -112,7 +112,7 @@ export default function Landing({ onGetStarted, toggle }) {
             <div className="prods">
               <article className="prod reveal">
                 <div className="art prod-art" style={{ '--img': 'url(/art/bust.png)' }} aria-hidden="true" />
-                <p className="label">Web</p><h3>intake.jaybulb.com</h3><p>Runs in any browser. Installs like an app.</p>
+                <p className="label">Web</p><h3>machaon.jaybulb.com</h3><p>Runs in any browser. Installs like an app.</p>
                 <button className="btn btn-solid" onClick={onGetStarted}>Open the web app</button>
               </article>
               <article className="prod reveal">
@@ -123,21 +123,21 @@ export default function Landing({ onGetStarted, toggle }) {
               <article className="prod reveal">
                 <div className="art prod-art" style={{ '--img': 'url(/art/plate.png)' }} aria-hidden="true" />
                 <p className="label">Open source</p><h3>Apache 2.0</h3><p>Read every line, or run your own copy.</p>
-                <a href="https://github.com/nulljosh/intake">GitHub &rarr;</a>
+                <a href="https://github.com/nulljosh/machaon">GitHub &rarr;</a>
               </article>
             </div>
           </div>
         </section>
 
-        <InstallAnywhere name="Intake" appUrl="https://intake.jaybulb.com" appStoreUrl={APP_STORE} />
+        <InstallAnywhere name="Machaon" appUrl="https://machaon.jaybulb.com" appStoreUrl={APP_STORE} />
       </main>
 
       <footer className="foot">
         <div className="foot-top">
-          <div className="foot-brand"><img src="/icon.svg" alt="" width="40" height="40" /><b>Intake</b><p>Track what you take, and what it does.</p></div>
+          <div className="foot-brand"><img src="/icon.svg" alt="" width="40" height="40" /><b>Machaon</b><p>Track what you take, and what it does.</p></div>
           <nav className="foot-cols" aria-label="Footer">
-            <div><p className="label">Intake</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="https://github.com/nulljosh/intake/blob/main/docs/WHITEPAPER.md">Whitepaper</a></div>
-            <div><p className="label">Source</p><a href="https://github.com/nulljosh/intake">GitHub</a><a href="https://github.com/nulljosh/intake/blob/main/docs/API.md">API</a><a href="https://github.com/nulljosh/intake/blob/main/docs/ARCHITECTURE.md">Architecture</a><a href="https://github.com/nulljosh/intake/blob/main/docs/SECURITY.md">Security</a></div>
+            <div><p className="label">Machaon</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/WHITEPAPER.md">Whitepaper</a></div>
+            <div><p className="label">Source</p><a href="https://github.com/nulljosh/machaon">GitHub</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/API.md">API</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/ARCHITECTURE.md">Architecture</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/SECURITY.md">Security</a></div>
             <div><p className="label">More</p><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="https://jaybulb.com">More apps</a><a href="#top">Back to top</a></div>
           </nav>
         </div>

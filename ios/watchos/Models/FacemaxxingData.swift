@@ -57,7 +57,7 @@ enum FacemaxxingData {
               notes: "Side sleeping compresses one side of the face for hours. Stomach sleeping is the worst.",
               psl: ["Harmony", "Misc"]),
         .init(id: "hydration", title: "Hydration and Sodium", category: "Diet", difficulty: "Daily",
-              summary: "Reduce facial bloat by managing water and salt intake.",
+              summary: "Reduce facial bloat by managing water and salt machaon.",
               steps: [
                 "2 to 3 L water per day, more if active",
                 "Cut processed foods and restaurant meals",

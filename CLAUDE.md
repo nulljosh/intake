@@ -1,9 +1,9 @@
-# Intake
+# Machaon
 v2.4.0
 
-Renamed from Dose 2026-07-01 (Dose, Balm, Tonic, and several others all taken on the App Store, Intake cleared). GitHub repo is nulljosh/intake, domain intake.jaybulb.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
+Renamed from Dose 2026-07-01 (Dose, Balm, Tonic, and several others all taken on the App Store, Machaon cleared). GitHub repo is nulljosh/machaon, domain machaon.jaybulb.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
 
-Renamed to Intake everywhere except two places: the App Store listing still says Healstack until a new build ships with the new name, and the Cloudflare Pages project is still `healstack` (it serves intake.jaybulb.com). The in-app name, web brand, domain, icon and repo all say Intake as of 2026-10-21.
+Renamed to Machaon everywhere except two places: the App Store listing still says Healstack until a new build ships with the new name, and the Cloudflare Pages project is still `healstack` (it serves machaon.jaybulb.com). The in-app name, web brand, domain, icon and repo all say Machaon as of 2026-10-21.
 
 ## Shipped (2026-06-28)
 - [x] ToS checkbox required on register tab, `src/pages/Auth.jsx`, `/tos.html`
@@ -11,7 +11,7 @@ Renamed to Intake everywhere except two places: the App Store listing still says
 - [x] GitHub provider enabled in Supabase (spark project) via management API
 
 ## Rules
-- Intake Sans (`scripts/gen_font.py`, Inter renamed), clrs.cc blue `#0074D9`, flat, no shadows or gradients. Brand kit: `brand/BRAND.md`
+- Machaon Sans (`scripts/gen_font.py`, Inter renamed), clrs.cc blue `#0074D9`, flat, no shadows or gradients. Brand kit: `brand/BRAND.md`
 - Mobile-first, bottom nav, safe-area-inset support
 - Supabase auth: login, register, password reset (PASSWORD_RECOVERY event flow)
 - Interaction checker must warn when logging substance that interacts with active stack
@@ -43,7 +43,7 @@ Migrated from Vercel to Cloudflare Pages 2026-08-06. Direct-upload via `wrangler
 
 ## iOS
 - ios/: SwiftUI iOS app. xcodegen (project.yml). iOS 17+.
-- xcodegen generate && xcodebuild build -scheme Intake -project Intake.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
+- xcodegen generate && xcodebuild build -scheme Machaon -project Machaon.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
 
 ## Pending
 - .env.local recreated 2026-06-12 (VITE_SUPABASE_* + HEALSTACK_EMAIL/HEALSTACK_PASSWORD), file is gone again as of 2026-06-20, needs recreating.

@@ -3,7 +3,7 @@
 ## Setup
 
 ```
-git clone https://github.com/nulljosh/intake.git
+git clone https://github.com/nulljosh/machaon.git
 cd healstack
 npm install
 ```

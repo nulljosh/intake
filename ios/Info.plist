@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Intake</string>
+	<string>Machaon</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -35,11 +35,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Unlock Intake with Face ID</string>
+	<string>Unlock Machaon with Face ID</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Intake reads your health data to track biometrics alongside your supplement and medication log.</string>
+	<string>Machaon reads your health data to track biometrics alongside your supplement and medication log.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Intake does not write to Health, but the HealthKit framework requires this description to be present.</string>
+	<string>Machaon does not write to Health, but the HealthKit framework requires this description to be present.</string>
 	<key>SUPABASE_ANON_KEY</key>
 	<string>$(SUPABASE_ANON_KEY)</string>
 	<key>SUPABASE_URL</key>

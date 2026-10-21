@@ -71,7 +71,7 @@ private struct BiometricsTab: View {
             } header: {
                 Label("Apple Health", systemImage: "heart.text.square.fill")
             } footer: {
-                Text("Heart rate, sleep, steps, weight, and blood pressure below are read from Apple Health via HealthKit. Intake never writes to Apple Health.")
+                Text("Heart rate, sleep, steps, weight, and blood pressure below are read from Apple Health via HealthKit. Machaon never writes to Apple Health.")
             }
             #endif
 
