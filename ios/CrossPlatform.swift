@@ -67,19 +67,6 @@ extension Color {
 }
 
 extension View {
-    /// The app draws its own floating tab bar, so the system one is hidden on iOS.
-    /// macOS has no tab bar to hide.
-    func hideSystemTabBar() -> some View {
-        #if os(iOS)
-        toolbar(.hidden, for: .tabBar)
-        #else
-        self
-        #endif
-    }
-}
-
-
-extension View {
     /// macOS sheets size to their content, which clipped long labels. Give them room; no-op on iOS.
     @ViewBuilder func macSheetSize() -> some View {
         #if os(macOS)

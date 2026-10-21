@@ -2,7 +2,7 @@ import SwiftUI
 import LocalAuthentication
 
 /// The five destinations, in order. `selectedTab` indexes into this.
-/// Shared by the iOS floating tab bar, the iOS TabView, and the macOS sidebar.
+/// Shared by the iOS TabView, and the macOS sidebar.
 private let doseTabs: [(icon: String, fill: String, label: String)] = [
     ("house", "house.fill", "Home"),
     ("books.vertical", "books.vertical.fill", "Library"),
@@ -78,16 +78,6 @@ struct HealstackApp: App {
                         destination(for: index)
                             .tabItem { Label(doseTabs[index].label, systemImage: doseTabs[index].fill) }
                             .tag(index)
-                            .hideSystemTabBar()
-                    }
-                }
-                .hideSystemTabBar()
-                // Inset, not overlay: every scrolling screen then clears the bar
-                // (the substance-detail Sources footer used to sit behind it).
-                .safeAreaInset(edge: .bottom) {
-                    if !requiresUnlock || isUnlocked {
-                        HealstackFloatingTabBar(selectedTab: $selectedTab)
-                            .padding(.bottom, 8)
                     }
                 }
                 #endif
@@ -204,43 +194,6 @@ struct HealstackApp: App {
         } catch {
             unlockError = error.localizedDescription
         }
-    }
-}
-
-private struct HealstackFloatingTabBar: View {
-    @Binding var selectedTab: Int
-
-    private let tabs = doseTabs
-
-    var body: some View {
-        HStack(spacing: 0) {
-            ForEach(tabs.indices, id: \.self) { index in
-                Button {
-                    selectedTab = index
-                    Haptics.impact(.light)
-                } label: {
-                    Image(systemName: selectedTab == index ? tabs[index].fill : tabs[index].icon)
-                        .font(.system(size: 20, weight: .medium))
-                        .foregroundStyle(selectedTab == index ? Color.accentColor : Color.secondary)
-                        .symbolEffect(.bounce, value: selectedTab == index)
-                        .frame(width: 50, height: 40)
-                        .background {
-                            if selectedTab == index {
-                                Capsule().fill(Color.accentColor.opacity(0.1))
-                            }
-                        }
-                }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.plain)
-                .accessibilityLabel(tabs[index].label)
-                .accessibilityIdentifier("tab.\(tabs[index].label)")
-            }
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 10)
-        .frame(maxWidth: 360)
-        .liquidGlass(in: Capsule(), interactive: true)
-        .overlay(Capsule().stroke(Color.primary.opacity(0.08), lineWidth: 1))
     }
 }
 
