@@ -1,24 +1,5 @@
 @import url("https://jaybulb.com/tokens.css");
-/* dose -- Portfolio Vibe (Geist body + Plus Jakarta Sans headings, flat, monochrome + blue accent) */
-
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap');
-
-@font-face {
-  font-family: 'Geist';
-  src: url('/fonts/Geist-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist';
-  src: url('/fonts/Geist-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* Intake: Intake Sans (see the @font-face block near the accent), flat, clrs.cc blue accent */
 :root{--bulb:var(--clay);--bulb-deep:var(--clay-deep);--accent:var(--clay);--accent-dot:var(--clay);--bg-secondary:var(--bg2);--bg-tertiary:var(--color-code-bg);--text-primary:var(--text);--text-secondary:#555555;--text-tertiary:var(--text3);--border-muted:var(--border2);--link:#a33d19;--accent-muted:color-mix(in srgb,var(--clay) 12%,transparent);--accent-border:color-mix(in srgb,var(--clay) 30%,transparent);--modal-bg:var(--bg);--glass-bg:var(--bg);--spring:cubic-bezier(0.34,1.56,0.64,1);--font:var(--font-body);--font-heading:var(--font-body);
   --danger: #dc2626;
   --danger-muted: rgba(220, 38, 38, 0.08);
@@ -1639,50 +1620,6 @@ button { user-select: none; font-family: inherit; }
   transform: translateY(-2px);
 }
 
-/* --- Landing hero: slow-drifting wall of pill marks (Bookrank hero pattern) --- */
-
-.hero-wall {
-  position: absolute; inset: -8%; z-index: 0;
-  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 28px;
-  opacity: 0.5; color: var(--link, var(--accent));
-  pointer-events: none; user-select: none;
-}
-.wall-col { display: flex; min-width: 0; flex-direction: column; gap: 28px; align-items: center; }
-.wall-col svg { width: 34px; height: 34px; flex-shrink: 0; }
-.wall-col.up   { animation: wall-up   var(--dur) linear infinite; }
-.wall-col.down { animation: wall-down var(--dur) linear infinite; }
-@keyframes wall-up   { from { transform: translateY(0); }    to { transform: translateY(-50%); } }
-@keyframes wall-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) { .wall-col { animation: none; } }
-
-/* scrim: keeps the headline readable over the wall, in either theme */
-.hero-scrim {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 65% at 50% 45%, var(--bg) 25%, transparent 80%),
-    linear-gradient(var(--bg), transparent 28%, transparent 64%, var(--bg) 96%),
-    color-mix(in srgb, var(--bg) 45%, transparent);
-}
-
-
-/* footer directory, ported from Joshua Tree */
-footer.lp-foot { margin: 0; padding: 56px 0 40px; border-top: 1px solid var(--border); text-align: left; font-size: 13px; }
-footer.lp-foot .foot-rule { display: flex; align-items: center; gap: 16px; max-width: 880px; margin: 0 auto; padding: 0 20px 28px; font-size: 13px; letter-spacing: .06em; font-weight: 500; color: var(--text-secondary); }
-footer.lp-foot .foot-rule::before { content: ""; order: 1; flex: 1; height: 1px; background: var(--border); }
-footer.lp-foot .foot-rule > :first-child { order: 0; }
-footer.lp-foot .foot-rule > :last-child { order: 2; }
-@media (max-width: 520px) { footer.lp-foot .foot-rule { flex-wrap: wrap; justify-content: center; gap: 10px 16px; } footer.lp-foot .foot-rule::before { order: -1; flex-basis: 100%; } }
-.foot-dir { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 24px; max-width: 880px; margin: 0 auto; padding: 0 20px 28px; text-align: left; }
-.foot-col h3 { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--text-primary); letter-spacing: 0.02em; }
-.foot-col ul { list-style: none; margin: 0; padding: 0; }
-.foot-col a { position: relative; display: inline-block; padding: 5px 0; margin: 0; color: var(--text-secondary); text-decoration: none; font-size: 13px; line-height: 1.35; }
-.foot-col a::after { content: ""; position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 100%; height: 44px; min-width: 44px; }
-.foot-col a:hover { color: var(--text-primary); text-decoration: underline; }
-.foot-bar { max-width: 880px; margin: 0 auto; padding: 18px 20px 0; border-top: 1px solid var(--border); }
-.foot-bar .foot-meta { margin: 0; text-align: left; color: var(--text-secondary); font-size: 12.5px; line-height: 1.9; }
-.foot-bar .foot-meta a { color: var(--text-secondary); }
-@media (max-width: 700px) { .foot-dir { grid-template-columns: repeat(2, 1fr); } }
-
 /* --- Sharing: printable summary --- */
 .print-only { display: none; }
 @media print {
@@ -1698,6 +1635,16 @@ footer.lp-foot .foot-rule > :last-child { order: 2; }
 /* Light theme is white, not the portfolio cream. Dark keeps the shared tokens. */
 :root:not([data-theme="dark"]) { --bg: #ffffff; --bg2: #f5f5f7; --color-code-bg: #ececef; --border: #e5e5ea; --border2: #ededf0; }
 
-/* Blue accent to match the icon. */
-:root { --clay: #007aff; --clay-deep: #0062cc; --link: #0066d6; }
-:root[data-theme="dark"] { --clay: #0a84ff; --clay-deep: #0a84ff; --link: #0a84ff; --accent: #0a84ff; }
+/* clrs.cc blue, the icon's accent (brand/tokens.css). */
+:root { --clay: #0074D9; --clay-deep: #005fb3; --link: #0066c0; }
+:root[data-theme="dark"] { --clay: #4da3ec; --clay-deep: #4da3ec; --link: #4da3ec; --accent: #4da3ec; }
+
+/* Intake Sans: Inter renamed (scripts/gen_font.py, OFL in /fonts/OFL.txt), SF and Helvetica in spirit. */
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Thin.woff2") format("woff2"); font-weight: 100; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-ExtraLight.woff2") format("woff2"); font-weight: 200; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Intake Sans"; src: url("/fonts/IntakeSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+:root { --font: "Intake Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; --font-heading: var(--font); }

@@ -1,0 +1,232 @@
+/* Intake landing, after Hermes: a navy-black page in a thin blue frame, giant thin condensed caps,
+   tiny caps labels, small square buttons and one full-bleed blue band. Scoped under .hl so the app's own CSS is untouched. */
+
+.hl {
+  --accent: #0074D9; --btn: #0074D9; --frame: #0074D9; --band: #0074D9;
+  --band-sub: #d9ecfb; --band-art: #8cc6f5; --band-line: rgba(255, 255, 255, .22);
+  --ring: color-mix(in srgb, var(--accent) 30%, transparent);
+  --bg: #fdfdfd; --surface: #f2f4f7; --line: #dcdfe5; --text: #1a1a1a; --sub: #5a5f6b;
+  --display: "Intake Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font: "Intake Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --size-body: 17px; --size-footnote: 13px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+  --wrap: 1120px; --r-row: 8px; --r-pill: 999px; --r-sq: 2px; --r-icon: 22.5%; --motion: .2s ease;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hl { --accent: #4da3ec; --btn: #0074D9; --frame: #0074D9; --band: #005fb3; --band-sub: #cfe5fa; --band-art: #6fb2ee; --bg: #0a0e19; --surface: #141a2a; --line: #252d44; --text: #f2f2f5; --sub: #a2a9bc; } }
+
+:root[data-theme="dark"] .hl { --accent: #4da3ec; --btn: #0074D9; --frame: #0074D9; --band: #005fb3; --band-sub: #cfe5fa; --band-art: #6fb2ee; --bg: #0a0e19; --surface: #141a2a; --line: #252d44; --text: #f2f2f5; --sub: #a2a9bc; }
+
+.hl .shot { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; padding: var(--sp-5); filter: drop-shadow(0 12px 32px rgba(0,0,0,.25)); }
+
+.hl .stage .shots { position: relative; display: flex; justify-content: center; gap: var(--sp-5); }
+
+.hl .stage .shots img { width: min(300px, 42%); border-radius: 28px; border: 1px solid var(--line); background: var(--bg); }
+
+.hl .stage .shots img:nth-child(2) { transform: translateY(32px); }
+
+
+.hl .word { font-family: var(--display); font-weight: 100; text-transform: uppercase; line-height: .8; font-size: clamp(120px, 30vw, 420px); color: var(--accent); white-space: nowrap; }
+
+.hl {
+  --scan: repeating-linear-gradient(to bottom, #000 0 1.5px, transparent 1.5px 3px);  /* scanlines for the engravings */
+  /* film grain: white fractal noise, laid over every blue surface */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .28 0 0 0 -.06'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Halftone art: each image is a dot mask (art/*.png, dithered from public domain works), tinted with --band-art */
+.hl .art { position: relative; overflow: hidden; background: var(--grain), var(--band); }
+.hl .art::before { content: ""; position: absolute; inset: 0; background: var(--band-art); -webkit-mask: var(--img) center / cover no-repeat; mask: var(--img) center / cover no-repeat; }
+.hl, .hl * { box-sizing: border-box; margin: 0; }
+.hl { scroll-behavior: smooth; }
+.hl { font-family: var(--font); font-size: var(--size-body); line-height: 24px; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+.hl a { color: inherit; }
+.hl code { font-size: .9em; padding: 2px 6px; border-radius: var(--r-sq); background: var(--surface); }
+.hl .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--sp-5); }
+.hl .center { text-align: center; }
+.hl h1, .hl h2, .hl h3, .hl .label { font-family: var(--display); }
+.hl h1, .hl h2, .hl h3 { text-wrap: balance; }
+/* the wing, in the accent, over a section title */
+.hl .wing { display: block; width: 56px; height: 56px; margin: 0 auto var(--sp-4); background: var(--accent); -webkit-mask: url(/brand-mark.svg) center / contain no-repeat; mask: url(/brand-mark.svg) center / contain no-repeat; }
+.hl h1 { font-size: clamp(112px, 17vw, 248px); line-height: .9; font-weight: 100; text-transform: uppercase; letter-spacing: -.005em; }
+.hl h2 { font-size: clamp(52px, 7.4vw, 112px); line-height: .9; font-weight: 100; text-transform: uppercase; }
+.hl h3 { font-size: 30px; line-height: 32px; font-weight: 300; }
+.hl .label { font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); margin-bottom: var(--sp-4); }
+.hl .btn { height: 40px; padding: 0 var(--sp-4); border-radius: var(--r-sq); display: inline-flex; align-items: center; font-family: var(--display); font-weight: 500; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border: 1px solid transparent; transition: background var(--motion), color var(--motion), border-color var(--motion); }
+.hl .btn-solid { background: var(--btn); color: #fff; }
+.hl .btn-solid:hover { background: color-mix(in srgb, var(--btn) 82%, #fff); }
+.hl .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--line); }
+.hl .btn-ghost:hover { border-color: var(--text); }
+.hl .btn:focus-visible, .hl .foot-cols a:focus-visible, .hl .prod a:focus-visible, .hl .nav-brand:focus-visible, .hl .nav-links a:focus-visible, .hl .row:focus-visible, .hl .tab:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+.hl .nav { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--sp-5); height: 56px; padding: 0 var(--sp-5); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); }
+.hl .nav-brand { display: flex; align-items: center; gap: var(--sp-2); font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+.hl .nav-brand img { width: 28px; height: 28px; border-radius: var(--r-icon); }
+.hl .nav-links, .hl .nav-get { display: flex; gap: var(--sp-5); font-family: var(--display); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.hl .nav-links a, .hl .nav-get { text-decoration: none; color: var(--sub); }
+.hl .nav-links a:hover, .hl .nav-get:hover { color: var(--text); }
+.hl .nav-brand { grid-column: 2; }
+.hl .nav-end { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: var(--sp-5); }
+/* the thin blue frame down both edges of the window */
+@media (min-width: 900px) {
+  .hl::after { content: ""; position: fixed; inset: 0; border-inline: 4px solid var(--frame); pointer-events: none; z-index: 30; } }
+.hl .hero { padding: var(--sp-9) 0 var(--sp-8); }
+.hl .lead { max-width: 560px; margin: var(--sp-6) auto 0; color: var(--sub); }
+.hl .cta { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-6); }
+.hl .center .cta { justify-content: center; }
+.hl .fine { margin-top: var(--sp-3); font-size: var(--size-footnote); line-height: 16px; color: var(--sub); }
+/* the live window: same layout as the Mac app */
+.hl .demo-wrap { margin: var(--sp-8) clamp(0px, 3vw, 44px) 0; }
+.hl .stage { position: relative; overflow: hidden; background: var(--grain), var(--band); padding: clamp(24px, 6vw, 96px) clamp(12px, 7vw, 128px); }
+.hl .stage-art { position: absolute; inset: 0; }
+.hl .term-stage .stage-art { color: var(--band-art); opacity: .65; -webkit-mask-image: var(--scan); mask-image: var(--scan); background: none; }
+.hl .term-stage .stage-art::before { content: none; }
+.hl .term-stage .stage-art svg { display: block; width: 100%; height: 100%; }
+.hl .stage .win { position: relative; max-width: 1040px; margin: 0 auto; }
+.hl .win { display: grid; grid-template-columns: 260px 1fr; height: 560px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: 13px; line-height: 18px; text-align: left; }
+.hl .win-side { display: flex; flex-direction: column; padding: var(--sp-4); background: var(--surface); border-right: 1px solid var(--line); }
+.hl .lights { display: flex; gap: var(--sp-2); }
+.hl .lights i { width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.hl .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-2); text-align: center; }
+.hl .welcome img { border-radius: var(--r-icon); margin-bottom: var(--sp-2); }
+.hl .welcome b { font-size: 17px; }
+.hl .welcome span { color: var(--sub); }
+.hl .side-foot { display: flex; justify-content: space-between; font-size: 11px; color: var(--sub); }
+.hl .side-foot a { color: var(--accent); text-decoration: none; }
+.hl .win-main { display: flex; flex-direction: column; min-width: 0; }
+.hl .bar { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3); border-bottom: 1px solid var(--line); }
+.hl .bar button { border: 0; background: none; color: var(--sub); font: inherit; cursor: pointer; padding: var(--sp-1); }
+.hl .search { flex: 1; height: 32px; border: 0; border-radius: var(--r-pill); padding: 0 var(--sp-3); background: var(--surface); color: var(--text); font: inherit; }
+.hl .list { overflow-y: auto; padding: var(--sp-2) 0; }
+.hl .row { display: flex; align-items: center; gap: var(--sp-3); width: calc(100% - 16px); margin: 0 var(--sp-2); padding: var(--sp-2); border: 0; border-radius: var(--r-row); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background .12s ease-out; }
+.hl .row:hover { background: var(--surface); }
+.hl .tile { flex: none; display: grid; place-items: center; border-radius: var(--r-icon); background: var(--surface); color: var(--accent); font-weight: 600; }
+.hl .row:hover .tile { background: var(--bg); }
+.hl .row b { display: block; font-size: 14px; }
+.hl .ver { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--sub); }
+.hl .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.hl .tabs { display: flex; gap: 2px; margin-left: auto; padding: 2px; border-radius: var(--r-pill); background: var(--surface); flex-wrap: wrap; }
+.hl .tab { border: 0; height: 26px; padding: 0 var(--sp-3); border-radius: var(--r-pill); background: none; color: var(--sub); font: inherit; cursor: pointer; }
+.hl .tab[aria-selected="true"] { background: var(--bg); color: var(--text); }
+.hl .pane { padding: var(--sp-5); overflow-y: auto; display: grid; gap: var(--sp-4); align-content: start; }
+.hl .pane small { display: block; font-size: 11px; color: var(--sub); }
+.hl .next { display: flex; align-items: center; gap: var(--sp-2); }
+.hl .links { display: flex; gap: var(--sp-3); }
+.hl .links a { color: var(--accent); text-decoration: none; }
+.hl .demo-hint { margin-top: var(--sp-3); font-size: var(--size-footnote); color: var(--sub); text-align: center; }
+/* The blue band: the engraving in scanlines beside the section head, then the six features as ruled cells */
+.hl .band { margin: 0 clamp(0px, 3vw, 44px); background: var(--grain), var(--band); color: #fff; overflow: hidden; }
+.hl .band .label { color: var(--band-sub); }
+.hl .band-head { text-align: center; }
+.hl .band-art { aspect-ratio: 19 / 10; max-height: 86vh; width: 100%; background: none; }
+.hl .band-copy { position: relative; margin-top: -10vw; padding: 0 var(--sp-5) var(--sp-9); }
+.hl .band-copy h2 { font-size: clamp(60px, 10vw, 168px); line-height: .9; }
+.hl .band-copy p:last-child { margin: var(--sp-6) auto 0; max-width: 480px; color: var(--band-sub); }
+.hl .frows { border-top: 1px solid var(--band-line); }
+.hl .frow { display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--band-line); }
+.hl .frow .art { aspect-ratio: 3 / 2; background: var(--grain), color-mix(in srgb, #fff 6%, var(--band)); }
+.hl .frow:nth-child(even) .art { order: 2; }
+.hl .frow > div:not(.art) { padding: var(--sp-7) clamp(24px, 6vw, 96px); max-width: 560px; }
+.hl .frow h3 { font-size: clamp(36px, 3.6vw, 52px); line-height: 1; font-weight: 200; }
+.hl .frow p:last-child { margin-top: var(--sp-4); color: var(--band-sub); }
+.hl .cells { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--band-line); }
+.hl .cell { padding: var(--sp-6) var(--sp-6) var(--sp-7); border-right: 1px solid var(--band-line); border-bottom: 1px solid var(--band-line); }
+.hl .cell:nth-child(3n) { border-right: 0; }
+.hl .cell:nth-last-child(-n+3) { border-bottom: 0; }
+.hl .cell .label { margin-bottom: var(--sp-5); }
+.hl .cell p:last-child { margin-top: var(--sp-3); color: var(--band-sub); font-size: 15px; line-height: 22px; }
+.hl .sec { padding: var(--sp-9) 0; }
+.hl .body { color: var(--sub); margin-top: var(--sp-5); max-width: 560px; }
+.hl .center .body { margin-left: auto; margin-right: auto; }
+.hl .term-stage { margin-top: var(--sp-7); }
+.hl .term { position: relative; max-width: 680px; margin: 0 auto; text-align: left; border-radius: 4px; background: var(--bg); border: 1px solid var(--line); padding: var(--sp-5); }
+/* three product cards, each with its own crop of the engraving */
+.hl .prods { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-4); text-align: left; }
+.hl .prod { display: grid; align-content: start; gap: var(--sp-2); }
+.hl .prod-art { margin: 0 0 var(--sp-3); aspect-ratio: 3 / 2; }
+.hl .prod .label { margin-bottom: 0; }
+.hl .prod p:not(.label) { color: var(--sub); font-size: 15px; line-height: 22px; }
+.hl .prod a { color: var(--accent); font-size: 15px; text-decoration: none; }
+.hl .prod a:hover { text-decoration: underline; }
+.hl .term pre { font: 13px/20px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-x: auto; }
+.hl .term .dim { color: var(--sub); }
+.hl .term figcaption { margin-top: var(--sp-3); font-size: var(--size-footnote); color: var(--sub); }
+.hl .plats { border-top: 1px solid var(--line); }
+.hl .plat-row { display: flex; justify-content: center; margin-top: var(--sp-7); }
+.hl .plat-row > div { max-width: 440px; padding: var(--sp-6); border-radius: 4px; border: 1px solid var(--line); display: grid; gap: var(--sp-2); justify-items: center; }
+.hl .plat-row small { font-family: var(--display); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); }
+.hl .plat-row b { font-family: var(--display); font-weight: 300; font-size: 40px; line-height: 44px; text-transform: uppercase; }
+.hl .plat-row p { color: var(--sub); font-size: 15px; line-height: 22px; margin-bottom: var(--sp-3); }
+/* Footer: brand and link columns, the engraved band of Hermes' things, one fine line */
+.hl .foot { text-align: center; padding: var(--sp-8) var(--sp-4) var(--sp-5); background: var(--bg); overflow: hidden; border-top: 1px solid var(--line); }
+.hl .foot-top { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--sp-4); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-7); text-align: left; }
+.hl .foot-brand { display: grid; gap: var(--sp-2); align-content: start; }
+.hl .foot-brand img { border-radius: var(--r-icon); }
+.hl .foot-brand b { font-family: var(--display); font-weight: 300; font-size: 40px; line-height: 40px; text-transform: uppercase; }
+.hl .foot-brand p { color: var(--sub); font-size: 15px; }
+.hl .foot-cols { display: flex; flex-wrap: wrap; gap: var(--sp-8); }
+.hl .foot-cols div { display: grid; gap: var(--sp-2); align-content: start; }
+.hl .foot-cols .label { margin-bottom: var(--sp-2); }
+.hl .foot-cols a { color: var(--text); text-decoration: none; font-size: 15px; }
+.hl .foot-cols a:hover { color: var(--accent); }
+.hl .word-band { color: var(--accent); position: relative; width: 100vw; margin: var(--sp-6) 0 0 calc(50% - 50vw); height: clamp(160px, 24vw, 340px); }
+.hl .word-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+.hl .word-band.live .word-canvas { display: block; }
+.hl .legal { margin-top: var(--sp-2); font-size: var(--size-footnote); line-height: 16px; color: var(--sub); text-wrap: balance; }
+.hl.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.hl.js .reveal.in { opacity: 1; transform: none; }
+@media (max-width: 900px) {
+  .hl .frow { grid-template-columns: 1fr; }
+.hl .docs { grid-template-columns: 1fr; gap: var(--sp-6); }
+.hl .toc { position: static; grid-auto-flow: column; overflow-x: auto; gap: var(--sp-4); white-space: nowrap; }
+.hl .defs { grid-template-columns: 1fr; }
+.hl .defs dt { border-bottom: 0; padding-bottom: 0; }
+.hl .frow:nth-child(even) .art { order: 0; }
+.hl .frow > div:not(.art) { padding: var(--sp-6) var(--sp-5) var(--sp-7); }
+.hl .band-copy { margin-top: -14vw; }
+.hl .cells { grid-template-columns: 1fr 1fr; }
+.hl .cell, .hl .cell:nth-child(3n), .hl .cell:nth-last-child(-n+3) { border-right: 1px solid var(--band-line); border-bottom: 1px solid var(--band-line); }
+.hl .cell:nth-child(2n) { border-right: 0; }
+.hl .cell:nth-last-child(-n+2) { border-bottom: 0; }
+.hl .win { grid-template-columns: 1fr; height: 600px; }
+.hl .prods { grid-template-columns: 1fr; gap: var(--sp-6); }
+.hl .win-side { display: none; }
+}
+@media (max-width: 600px) {
+  .hl .nav-links, .hl .nav-get { display: none; }
+.hl .wrap { padding: 0 var(--sp-4); }
+.hl .hero { padding-top: var(--sp-8); }
+.hl .cells { grid-template-columns: 1fr; }
+.hl .cell, .hl .cell:nth-child(2n), .hl .cell:nth-child(3n), .hl .cell:nth-last-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--band-line); padding: var(--sp-5); }
+.hl .cell:last-child { border-bottom: 0; }
+.hl .tabs { margin-left: 0; }
+.hl .bar.detail { flex-wrap: wrap; }
+.hl .word-band { height: 260px; }
+.hl .foot-cols { gap: var(--sp-6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hl { scroll-behavior: auto; }
+.hl.js .reveal { opacity: 1; transform: none; transition: none; }
+.hl .btn, .hl .row { transition: none; }
+}
+/* an art slot with no image (the feature rows hold screenshots) shows only the blue field */
+.hl .art:not([style])::before { content: none; }
+/* the app's global CSS colours headings; on the landing they take the section's colour */
+.hl h1, .hl h2, .hl h3 { color: inherit; }
+/* the app's bottom tab bar is also .nav: undo its fixed pill so the landing's header is a plain sticky bar */
+.hl .nav { bottom: auto; left: auto; right: auto; width: auto; flex-direction: row; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 var(--sp-5); gap: var(--sp-5); }
+.hl .nav .btn { white-space: nowrap; }
+/* the giant wordmark sits in its own row, the legal line under it */
+.hl .word-band { height: auto; display: flex; justify-content: center; overflow: hidden; }
+/* the shared install section, squared to match the landing's panels */
+.hl #install-anywhere .xp-card { border-radius: 4px; }
+/* Intake Sans is wider than a condensed face: the display sizes come down so the caps keep Hermes' proportions */
+.hl h1 { font-size: clamp(72px, 12vw, 176px); letter-spacing: 0; }
+.hl h2 { font-size: clamp(44px, 6vw, 88px); letter-spacing: .01em; }
+.hl .band-copy h2 { font-size: clamp(48px, 7.5vw, 120px); }
+.hl .word { font-size: clamp(88px, 21vw, 300px); letter-spacing: -.01em; }
+/* the painting fades into the band, so the white headline over it always has the blue behind it */
+.hl .band-art::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, var(--band) 85%); }
+.hl .band-copy h2 { font-weight: 200; }
+.hl #install-anywhere h2 { font-weight: 200; letter-spacing: .01em; }
+/* on a phone the feature rows stack: give each screenshot a tall slot so it reads */
+@media (max-width: 900px) { .hl .frow .art { aspect-ratio: 4 / 5; } }
