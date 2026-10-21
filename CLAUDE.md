@@ -1,9 +1,9 @@
 # Machaon
 v2.4.0
 
-Renamed from Dose 2026-07-01 (Dose, Balm, Tonic, and several others all taken on the App Store, Machaon cleared). GitHub repo is nulljosh/machaon, domain machaon.jaybulb.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
+Renamed from Dose 2026-07-01 to Healstack, then Intake (2026-10-04), then Machaon (2026-10-21, because the App Store name Intake belongs to another developer). GitHub repo is nulljosh/machaon, domain machaon.jaybulb.com. Bundle IDs, App Group, and URL scheme (dose://) intentionally left as `dose` to avoid re-provisioning/App Store relinking.
 
-Renamed to Machaon everywhere except two places: the App Store listing still says Healstack until a new build ships with the new name, and the Cloudflare Pages project is still `healstack` (it serves machaon.jaybulb.com). The in-app name, web brand, domain, icon and repo all say Machaon as of 2026-10-21.
+Machaon everywhere: app, store listing (iOS 2.4.0 in review), web, machaon.jaybulb.com, repo, font. Old names kept on purpose: Pages project `healstack`, bundle id and App Group `dose`, URL schemes, the `Healstack` Xcode project and scheme, all storage keys. intake.jaybulb.com keeps serving.
 
 ## Shipped (2026-06-28)
 - [x] ToS checkbox required on register tab, `src/pages/Auth.jsx`, `/tos.html`
@@ -43,7 +43,7 @@ Migrated from Vercel to Cloudflare Pages 2026-08-06. Direct-upload via `wrangler
 
 ## iOS
 - ios/: SwiftUI iOS app. xcodegen (project.yml). iOS 17+.
-- xcodegen generate && xcodebuild build -scheme Machaon -project Machaon.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
+- xcodegen generate && xcodebuild build -scheme Healstack -project Healstack.xcodeproj -destination "platform=iOS Simulator,name=iPhone 17 Pro"
 
 ## Pending
 - .env.local recreated 2026-06-12 (VITE_SUPABASE_* + HEALSTACK_EMAIL/HEALSTACK_PASSWORD), file is gone again as of 2026-06-20, needs recreating.

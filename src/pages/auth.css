@@ -1,0 +1,22 @@
+/* Sign in and register: the landing's band on one side, the form on the other; stacked on a phone */
+.hl.auth { display: grid; grid-template-columns: 1fr 1fr; min-height: 100dvh; }
+.hl .auth-art { min-height: 220px; }
+.hl .auth-panel { display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; gap: var(--sp-4); width: 100%; max-width: 400px; margin: 0 auto; padding: var(--sp-8) var(--sp-5); }
+.hl .auth-panel h1 { font-size: clamp(48px, 5vw, 72px); white-space: nowrap; margin-bottom: var(--sp-2); }
+.hl .auth-panel .label { margin-bottom: 0; margin-top: var(--sp-6); }
+.hl .auth-tabs { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: var(--r-sq); }
+.hl .auth-tabs button { height: 44px; border: 0; background: none; color: var(--sub); font: 500 15px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.hl .auth-tabs button[aria-selected="true"] { background: var(--surface); color: var(--text); }
+.hl .auth-form { display: grid; gap: var(--sp-3); }
+.hl .auth-input { height: 48px; padding: 0 var(--sp-4); border: 1px solid var(--line); border-radius: var(--r-sq); background: var(--bg); color: var(--text); font: inherit; }
+.hl .auth-input:focus-visible, .hl .auth-tabs button:focus-visible, .hl .auth-link:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+.hl .auth-submit { height: 48px; justify-content: center; margin-top: var(--sp-2); }
+.hl .auth-submit:disabled { opacity: .6; }
+.hl .auth-link { justify-self: start; border: 0; background: none; padding: 0; color: var(--accent); font: inherit; font-size: 15px; cursor: pointer; }
+.hl .auth-note { color: var(--sub); font-size: 15px; line-height: 22px; }
+.hl .auth-check { display: flex; align-items: center; gap: var(--sp-2); }
+.hl .auth-note a { color: var(--accent); }
+.hl .auth-error { color: #c0392b; font-size: 15px; }
+.hl .auth-ok { color: #2f8a4e; font-size: 15px; }
+@media (max-width: 900px) { .hl.auth { grid-template-columns: 1fr; } .hl .auth-panel { padding-top: var(--sp-6); } }
+.hl .auth-panel .nav-brand { grid-column: auto; justify-self: start; } /* the landing header centres the brand in column 2; here it heads the form */

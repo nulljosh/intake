@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { spark } from '../lib/spark';
+import './landing.css';
+import './auth.css';
 
 export default function Auth() {
   const [tab, setTab] = useState('login');
@@ -34,121 +36,44 @@ export default function Auth() {
     setLoading(false);
   }
 
+  const switchTo = (t) => { setTab(t); setError(''); setMessage(''); };
+
+  // Dressed like the landing (landing.css, .hl scope): the halftone band beside the form, thin caps, square controls.
   return (
-    <div style={{
-      minHeight: '100dvh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px 16px',
-      background: 'var(--bg-primary)',
-    }}>
-      <div style={{ width: '100%', maxWidth: 360 }}>
-        <div style={{ marginBottom: 32, textAlign: 'center' }}>
-          <div style={{
-            width: 48, height: 48, borderRadius: 12, background: 'var(--bg-secondary)',
-            border: '1px solid var(--border)', display: 'flex', alignItems: 'center',
-            justifyContent: 'center', margin: '0 auto 16px',
-          }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-              <path d="M20 21a8 8 0 1 0-16 0"/>
-            </svg>
-          </div>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 600, margin: 0, color: 'var(--text-primary)' }}>Machaon</h1>
-          <p style={{ fontSize: '0.83rem', color: 'var(--text-tertiary)', margin: '4px 0 0' }}>Health tracker</p>
-        </div>
+    <div className="hl auth">
+      <div className="art auth-art" style={{ '--img': 'url(/art/ricci.png)' }} aria-hidden="true" />
+      <div className="auth-panel">
+        <a className="nav-brand" href="/"><img src="/icon.svg" alt="" width="28" height="28" /><span>Machaon</span></a>
+        <p className="label">{tab === 'register' ? 'Start your log' : tab === 'reset' ? 'Reset your password' : 'Welcome back'}</p>
+        <h1>{tab === 'register' ? 'Register' : tab === 'reset' ? 'Reset' : 'Sign in'}</h1>
 
         {tab !== 'reset' && (
-          <div style={{
-            display: 'flex', gap: 4, background: 'var(--bg-secondary)',
-            border: '1px solid var(--border)', borderRadius: 8, padding: 4, marginBottom: 20,
-          }}>
+          <div className="auth-tabs" role="tablist">
             {['login', 'register'].map(t => (
-              <button
-                key={t}
-                onClick={() => { setTab(t); setError(''); setMessage(''); }}
-                style={{
-                  flex: 1, padding: '7px 0', borderRadius: 6, border: 'none', cursor: 'pointer',
-                  fontFamily: 'inherit', fontSize: '0.83rem', fontWeight: 500,
-                  background: tab === t ? 'var(--bg-primary)' : 'transparent',
-                  color: tab === t ? 'var(--text-primary)' : 'var(--text-tertiary)',
-                  boxShadow: tab === t ? '0 1px 3px rgba(0,0,0,0.15)' : 'none',
-                  transition: 'all 0.15s',
-                }}
-              >
-                {t === 'login' ? 'Sign in' : 'Register'}
-              </button>
+              <button key={t} role="tab" aria-selected={tab === t} onClick={() => switchTo(t)}>{t === 'login' ? 'Sign in' : 'Register'}</button>
             ))}
           </div>
         )}
-
         {tab === 'reset' && (
-          <p style={{ fontSize: '0.83rem', color: 'var(--text-tertiary)', marginBottom: 20 }}>
-            Enter your email and we'll send a reset link.{' '}
-            <button
-              type="button"
-              onClick={() => { setTab('login'); setError(''); setMessage(''); }}
-              style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', padding: 0, fontFamily: 'inherit', fontSize: 'inherit' }}
-            >
-              Back to sign in
-            </button>
-          </p>
+          <p className="auth-note">Enter your email and we'll send a reset link. <button type="button" className="auth-link" onClick={() => switchTo('login')}>Back to sign in</button></p>
         )}
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <input
-            className="input"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-            autoComplete="email"
-          />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <input className="auth-input" type="email" placeholder="Email" aria-label="Email" value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email" />
           {tab !== 'reset' && (
-            <input
-              className="input"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-              minLength={8}
-              autoComplete={tab === 'login' ? 'current-password' : 'new-password'}
-            />
+            <input className="auth-input" type="password" placeholder="Password" aria-label="Password" value={password} onChange={e => setPassword(e.target.value)} required minLength={8} autoComplete={tab === 'login' ? 'current-password' : 'new-password'} />
           )}
-
-          {tab === 'login' && (
-            <button
-              type="button"
-              onClick={() => { setTab('reset'); setError(''); setMessage(''); }}
-              style={{ background: 'none', border: 'none', color: 'var(--text-tertiary)', cursor: 'pointer', padding: 0, fontFamily: 'inherit', fontSize: '0.78rem', textAlign: 'left' }}
-            >
-              Forgot password?
-            </button>
-          )}
-
+          {tab === 'login' && <button type="button" className="auth-link" onClick={() => switchTo('reset')}>Forgot password?</button>}
           {tab === 'register' && (
-            <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.78rem', color: 'var(--text-tertiary)', cursor: 'pointer' }}>
+            <label className="auth-note auth-check">
               <input type="checkbox" checked={tosChecked} onChange={e => setTosChecked(e.target.checked)} />
-              I agree to the <a href="/tos.html" target="_blank" style={{ color: 'var(--text-secondary)' }}>Terms of Service</a>
+              I agree to the <a href="/tos.html" target="_blank">Terms of Service</a>
             </label>
           )}
-          {error && (
-            <p style={{ fontSize: '0.78rem', color: 'var(--danger)', margin: 0 }}>{error}</p>
-          )}
-          {message && (
-            <p style={{ fontSize: '0.78rem', color: 'var(--success)', margin: 0 }}>{message}</p>
-          )}
-
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={loading}
-            style={{ marginTop: 4 }}
-          >
-            {loading ? 'Loading...' : tab === 'login' ? 'Sign in' : tab === 'register' ? 'Create account' : 'Send reset email'}
+          {error && <p className="auth-error" role="alert">{error}</p>}
+          {message && <p className="auth-ok" role="status">{message}</p>}
+          <button type="submit" className="btn btn-solid auth-submit" disabled={loading}>
+            {loading ? 'One moment' : tab === 'login' ? 'Sign in' : tab === 'register' ? 'Create account' : 'Send reset email'}
           </button>
         </form>
       </div>
