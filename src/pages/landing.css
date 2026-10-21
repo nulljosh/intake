@@ -27,7 +27,6 @@
 .hl .stage .shots img:nth-child(2) { transform: translateY(32px); }
 
 
-.hl .word { font-family: var(--display); font-weight: 100; text-transform: uppercase; line-height: .8; font-size: clamp(120px, 30vw, 420px); color: var(--accent); white-space: nowrap; }
 
 .hl {
   --scan: repeating-linear-gradient(to bottom, #000 0 1.5px, transparent 1.5px 3px);  /* scanlines for the engravings */
@@ -215,15 +214,12 @@
 /* the app's bottom tab bar is also .nav: undo its fixed pill so the landing's header is a plain sticky bar */
 .hl .nav { bottom: auto; left: auto; right: auto; width: auto; flex-direction: row; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0 var(--sp-5); gap: var(--sp-5); }
 .hl .nav .btn { white-space: nowrap; }
-/* the giant wordmark sits in its own row, the legal line under it */
-.hl .word-band { height: auto; display: flex; justify-content: center; overflow: hidden; }
 /* the shared install section, squared to match the landing's panels */
 .hl #install-anywhere .xp-card { border-radius: 4px; }
 /* Intake Sans is wider than a condensed face: the display sizes come down so the caps keep Hermes' proportions */
 .hl h1 { font-size: clamp(72px, 12vw, 176px); letter-spacing: 0; }
 .hl h2 { font-size: clamp(44px, 6vw, 88px); letter-spacing: .01em; }
 .hl .band-copy h2 { font-size: clamp(48px, 7.5vw, 120px); }
-.hl .word { font-size: clamp(88px, 21vw, 300px); letter-spacing: -.01em; }
 /* the painting fades into the band, so the white headline over it always has the blue behind it */
 .hl .band-art::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, var(--band) 85%); }
 .hl .band-copy h2 { font-weight: 200; }

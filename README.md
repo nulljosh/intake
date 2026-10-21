@@ -1,7 +1,7 @@
 <img src="icon.svg" width="80" style="border-radius:18px">
 
 # Intake
-![version](https://img.shields.io/badge/version-v2.3.5-blue) ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fhealstack-black?logo=github)](https://github.com/nulljosh/intake)
+![version](https://img.shields.io/badge/version-v2.3.5-blue) ![license](https://img.shields.io/badge/license-Apache--2.0-blue) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Fhealstack-black?logo=github)](https://github.com/nulljosh/intake)
 
 **Live:** https://intake.jaybulb.com
 
@@ -51,4 +51,4 @@ Native apps live in `ios/` and `macos/`. Each has an xcodegen `project.yml`.
 <img src="architecture.svg" width="600">
 
 ## License
-MIT 2026 Joshua Trommel
+Apache 2.0, 2026 Joshua Trommel. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

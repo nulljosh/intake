@@ -61,4 +61,4 @@ third-party trackers.
 
 ## License
 
-MIT 2026, Joshua Trommel
+Apache 2.0, 2026, Joshua Trommel

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import InstallAnywhere from '../components/InstallAnywhere';
+import FooterBand from '../components/FooterBand';
 import './landing.css';
 
 const APP_STORE = 'https://apps.apple.com/app/id6785764864';
@@ -121,7 +122,7 @@ export default function Landing({ onGetStarted, toggle }) {
               </article>
               <article className="prod reveal">
                 <div className="art prod-art" style={{ '--img': 'url(/art/plate.png)' }} aria-hidden="true" />
-                <p className="label">Open source</p><h3>MIT licensed</h3><p>Read every line, or run your own copy.</p>
+                <p className="label">Open source</p><h3>Apache 2.0</h3><p>Read every line, or run your own copy.</p>
                 <a href="https://github.com/nulljosh/intake">GitHub &rarr;</a>
               </article>
             </div>
@@ -140,8 +141,8 @@ export default function Landing({ onGetStarted, toggle }) {
             <div><p className="label">More</p><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="https://jaybulb.com">More apps</a><a href="#top">Back to top</a></div>
           </nav>
         </div>
-        <div className="word-band" aria-hidden="true"><div className="word">Intake</div></div>
-        <p className="legal">&copy; 2026 Joshua Trommel &middot; MIT License{typeof __APP_VERSION__ !== 'undefined' ? ` · v${__APP_VERSION__}` : ''} &middot; <a href="/privacy.html">Privacy</a></p>
+        <FooterBand />
+        <p className="legal">&copy; 2026 Joshua Trommel &middot; Apache 2.0{typeof __APP_VERSION__ !== 'undefined' ? ` · v${__APP_VERSION__}` : ''} &middot; <a href="/privacy.html">Privacy</a></p>
       </footer>
     </div>
   );
