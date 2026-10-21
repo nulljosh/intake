@@ -24,8 +24,10 @@ struct SplashView: View {
                         )
                         .frame(width: 120, height: 120)
 
-                    Image(systemName: "pills.fill")
-                        .font(.system(size: 48, weight: .medium))
+                    Image("Mark") // the stethoscope from the app icon (brand/mark.svg)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [.white, .white.opacity(0.7)],

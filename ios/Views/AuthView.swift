@@ -8,6 +8,7 @@ struct AuthView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var loading = false
+    @Environment(\.colorScheme) private var colorScheme
     @State private var errorMessage: String?
     @State private var successMessage: String?
 
@@ -19,14 +20,17 @@ struct AuthView: View {
 
             VStack(spacing: 28) {
                 VStack(spacing: 8) {
-                    Image(systemName: "cross.vial.fill")
-                        .font(.system(size: 36, weight: .medium))
+                    Image("Mark") // the stethoscope from the app icon (brand/mark.svg)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 56, height: 56)
                         .foregroundStyle(.tint)
+                        .accessibilityHidden(true)
 
                     Text("Machaon")
                         .font(.title2.weight(.semibold))
 
-                    Text("Health tracker")
+                    Text("Track what you take, and what it does")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -138,8 +142,9 @@ struct AuthView: View {
                                 catch { errorMessage = error.localizedDescription }
                             }
                         }
-                        .signInWithAppleButtonStyle(.black)
-                        .frame(height: 50)
+                        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                        .frame(height: 48)
+                        .clipShape(Capsule())
                     }
 
                     Button {
@@ -147,15 +152,23 @@ struct AuthView: View {
                             loading = true
                             defer { loading = false }
                             do { try await authService.signInWithGoogle() }
+                            catch let error as ASWebAuthenticationSessionError where error.code == .canceledLogin { }
                             catch { errorMessage = error.localizedDescription }
                         }
                     } label: {
-                        Text("Continue with Google")
-                            .fontWeight(.semibold)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
+                        // Google's own button: white with a grey outline in light mode, near-black in dark,
+                        // the four-colour G on the left. Same height and capsule as the Apple button above.
+                        HStack(spacing: 10) {
+                            Image("GoogleG").resizable().frame(width: 18, height: 18).accessibilityHidden(true)
+                            Text("Sign in with Google").font(.system(size: 17, weight: .medium))
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .foregroundStyle(colorScheme == .dark ? Color(white: 0.89) : Color(white: 0.12))
+                        .background(colorScheme == .dark ? Color(white: 0.075) : .white, in: Capsule())
+                        .overlay(Capsule().stroke(colorScheme == .dark ? Color(white: 0.56) : Color(white: 0.46), lineWidth: 1))
+                        .contentShape(Capsule())
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.plain)
                 }
             }
             .padding(28)
