@@ -7,11 +7,7 @@ struct SessionHistoryView: View {
         NavigationStack {
             Group {
                 if store.sessions.isEmpty {
-                    ContentUnavailableView(
-                        "No Sessions",
-                        systemImage: "clock.arrow.trianglehead.counterclockwise.rotate.90",
-                        description: Text("Log your first session from the Reflexology or Points tab.")
-                    )
+                    EmptyState(title: "No Sessions", message: "Log your first session from the Reflexology or Points tab.")
                 } else {
                     List {
                         ForEach(store.sessions) { session in

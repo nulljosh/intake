@@ -180,6 +180,7 @@ export default function Dashboard() {
         <div className="section-label">Recent Entries</div>
         {recent.length === 0 ? (
           <div className="card-empty">
+            <img src="/brand/mascot.svg" width="64" height="64" alt="" style={{ display: 'block', margin: '0 auto 8px' }} />
             <div style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: 6 }}>Nothing logged yet</div>
             <div style={{ fontSize: '0.85rem' }}>Start tracking your doses above.</div>
           </div>

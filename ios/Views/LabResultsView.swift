@@ -57,11 +57,7 @@ struct LabResultsView: View {
     @ViewBuilder
     var timelineTab: some View {
         if sorted.isEmpty {
-            ContentUnavailableView(
-                "No lab results",
-                systemImage: "cross.vial",
-                description: Text("Add results manually or import from a LifeLabs PDF on the web.")
-            )
+            EmptyState(title: "No lab results", message: "Add results manually or import from a LifeLabs PDF on the web.")
         } else {
             List {
                 ForEach(sorted) { result in
@@ -88,11 +84,7 @@ struct LabResultsView: View {
     @ViewBuilder
     var markersTab: some View {
         if markerNames.isEmpty {
-            ContentUnavailableView(
-                "No markers yet",
-                systemImage: "chart.line.uptrend.xyaxis",
-                description: Text("Add lab results to track individual markers.")
-            )
+            EmptyState(title: "No markers yet", message: "Add lab results to track individual markers.")
         } else {
             VStack(alignment: .leading, spacing: 0) {
                 Picker("Marker", selection: $selectedMarker) {

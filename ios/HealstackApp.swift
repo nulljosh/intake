@@ -1,4 +1,7 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 import LocalAuthentication
 
 /// The five destinations, in order. `selectedTab` indexes into this.
@@ -47,6 +50,13 @@ struct HealstackApp: App {
 
     private var requiresUnlock: Bool {
         !isUITestSnapshot && biometryType != .none
+    }
+
+    init() {
+        #if os(iOS)
+        // Large titles in a light weight, the app's echo of the landing's thin headlines.
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 34, weight: .light)]
+        #endif
     }
 
     var body: some Scene {
