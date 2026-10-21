@@ -59,8 +59,8 @@ export default function Landing({ onGetStarted, toggle }) {
         <section className="hero">
           <div className="wrap center">
             <p className="label">Supplements, medications and symptoms</p>
-            <h1 className="hero-h1">Track what you take, and what it does.</h1>
-            <p className="lead">A private log with an interaction check before every dose.</p>
+            <h1 className="hero-h1">Know what you take.</h1>
+            <p className="lead">A private dose log that checks every interaction first.</p>
             <div className="cta">
               <button className="btn btn-solid" onClick={onGetStarted}>Start tracking</button>
               <a className="btn btn-ghost" href="#features">See what it does</a>
@@ -85,7 +85,7 @@ export default function Landing({ onGetStarted, toggle }) {
             <div className="art band-art" style={{ '--img': 'url(/art/ricci.png)' }} aria-hidden="true" />
             <div className="band-copy reveal">
               <p className="label">Named for the healer at Troy</p>
-              <h2>Know what works</h2>
+              <h2>See what works</h2>
               <p>Most trackers stop at a list. Machaon shows what each dose did.</p>
             </div>
           </div>
@@ -106,7 +106,7 @@ export default function Landing({ onGetStarted, toggle }) {
 
         <section className="sec plats" id="get">
           <div className="wrap center">
-            <i className="wing reveal" aria-hidden="true" />
+            <img className="mascot reveal" src="/brand/mascot.svg" width="96" height="96" alt="Aski, the Machaon mascot" />
             <p className="label reveal">Available now</p>
             <h2 className="reveal">Everywhere</h2>
             <p className="body reveal">One account. Your log follows you between the web and your phone.</p>
@@ -137,7 +137,7 @@ export default function Landing({ onGetStarted, toggle }) {
         <div className="foot-top">
           <div className="foot-brand"><img src="/icon.svg" alt="" width="40" height="40" /><b>Machaon</b><p>Track what you take, and what it does.</p></div>
           <nav className="foot-cols" aria-label="Footer">
-            <div><p className="label">Machaon</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/WHITEPAPER.md">Whitepaper</a></div>
+            <div><p className="label">Machaon</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="/brand/">Brand kit</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/WHITEPAPER.md">Whitepaper</a></div>
             <div><p className="label">Source</p><a href="https://github.com/nulljosh/machaon">GitHub</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/API.md">API</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/ARCHITECTURE.md">Architecture</a><a href="https://github.com/nulljosh/machaon/blob/main/docs/SECURITY.md">Security</a></div>
             <div><p className="label">More</p><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="https://jaybulb.com">More apps</a><a href="#top">Back to top</a></div>
           </nav>

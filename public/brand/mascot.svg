@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Aski, the Machaon mascot: the serpent from the rod of Asclepius">
+  <!-- Aski: the serpent from Asclepius' rod, coiled into an S. Body in the accent, a pale belly line, a round friendly head. -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 196 C28 196 28 150 70 150 L168 150 C212 150 212 98 168 98 L92 98 C56 98 56 56 94 56 L132 56" stroke="#0074D9" stroke-width="34"/>
+    <path d="M58 196 C28 196 28 150 70 150 L168 150 C212 150 212 98 168 98 L92 98 C56 98 56 56 94 56 L132 56" stroke="#8cc6f5" stroke-width="6" stroke-dasharray="2 14"/>
+  </g>
+  <ellipse cx="156" cy="56" rx="34" ry="28" fill="#0074D9"/>
+  <circle cx="150" cy="48" r="8" fill="#fff"/><circle cx="174" cy="48" r="8" fill="#fff"/>
+  <circle cx="152" cy="49" r="4" fill="#0a0e19"/><circle cx="176" cy="49" r="4" fill="#0a0e19"/>
+  <path d="M154 66 Q163 72 172 66" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>
