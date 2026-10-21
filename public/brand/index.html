@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Machaon brand kit</title>
+<meta name="description" content="The Machaon mark, colour, type, art and controls, with every file to download.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://machaon.jaybulb.com/brand/">
+<style>
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Thin.woff2) format("woff2"); font-weight: 100; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Light.woff2) format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Medium.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Semibold.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Machaon Sans"; src: url(/fonts/MachaonSans-Bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+/* Same tokens as the landing (src/pages/landing.css) and brand/tokens.css. */
+:root {
+  --accent: #0074D9; --accent-light: #3d9bf0; --band: #0074D9; --band-sub: #d9ecfb; --band-art: #8cc6f5; --frame: #0074D9;
+  --bg: #fdfdfd; --surface: #f2f4f7; --line: #dcdfe5; --text: #1a1a1a; --sub: #5a5f6b; --ring: color-mix(in srgb, #0074D9 30%, transparent);
+  --font: "Machaon Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+}
+@media (prefers-color-scheme: dark) { :root { --accent: #4da3ec; --band: #005fb3; --bg: #0a0e19; --surface: #141a2a; --line: #252d44; --text: #f2f2f5; --sub: #a2a9bc; } }
+* { box-sizing: border-box; margin: 0; }
+body { font: 17px/24px var(--font); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+@media (min-width: 900px) { body::after { content: ""; position: fixed; inset: 0; border-inline: 4px solid var(--frame); pointer-events: none; } }
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--sp-5); }
+.top { display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid var(--line); padding: 0 var(--sp-5); }
+.top img { width: 32px; height: 32px; border-radius: 22.5%; display: block; }
+.top a { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--sub); }
+h1, h2 { font-weight: 100; text-transform: uppercase; line-height: .9; }
+h1 { font-size: clamp(64px, 11vw, 160px); }
+h2 { font-size: clamp(40px, 5.5vw, 80px); margin-bottom: var(--sp-5); }
+.label { font-size: 14px; line-height: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--sub); margin-bottom: var(--sp-4); }
+.lead { color: var(--sub); max-width: 560px; margin-top: var(--sp-5); }
+section { padding: var(--sp-9) 0; border-bottom: 1px solid var(--line); }
+.hero { text-align: center; }
+.hero .lead { margin-left: auto; margin-right: auto; }
+.grid { display: grid; gap: var(--sp-4); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.tile { border: 1px solid var(--line); border-radius: 4px; padding: var(--sp-5); display: grid; gap: var(--sp-2); align-content: start; }
+.tile small { color: var(--sub); font-size: 13px; }
+.icons { display: flex; align-items: end; gap: var(--sp-6); flex-wrap: wrap; }
+.icons figure { display: grid; gap: var(--sp-2); justify-items: center; color: var(--sub); font-size: 13px; }
+.icons img { display: block; border-radius: 22.5%; }
+.mark { width: 160px; height: 160px; background: var(--accent); -webkit-mask: url(/brand/mark.svg) center / contain no-repeat; mask: url(/brand/mark.svg) center / contain no-repeat; }
+.swatch { height: 96px; border-radius: 4px; border: 1px solid var(--line); }
+.specimen { display: grid; gap: var(--sp-3); }
+.specimen p { font-size: clamp(28px, 4vw, 48px); line-height: 1.1; }
+.specimen small { display: block; font-size: 13px; color: var(--sub); letter-spacing: .04em; }
+.art { aspect-ratio: 3 / 2; background: var(--band); position: relative; overflow: hidden; border-radius: 4px; }
+.art::before { content: ""; position: absolute; inset: 0; background: var(--band-art); -webkit-mask: var(--img) center / cover no-repeat; mask: var(--img) center / cover no-repeat; }
+.controls { display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center; }
+.btn { display: inline-flex; align-items: center; height: 48px; padding: 0 var(--sp-5); border-radius: 999px; font: 600 17px/1 var(--font); border: 1px solid transparent; text-decoration: none; }
+.solid { background: var(--accent); color: #fff; }
+.ghost { background: var(--surface); color: var(--text); border-color: var(--line); }
+.field { height: 48px; border-radius: 999px; padding: 0 var(--sp-4); background: var(--surface); border: 1px solid var(--line); color: var(--sub); display: inline-flex; align-items: center; min-width: 240px; }
+.files { display: grid; gap: var(--sp-2); }
+.files a { text-decoration: none; display: flex; justify-content: space-between; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+.files span { color: var(--sub); font-size: 15px; }
+footer { padding: var(--sp-7) 0; color: var(--sub); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<header class="top"><a href="/"><img src="/brand/icon.svg" alt="Machaon home"></a><a href="/">Back to Machaon</a></header>
+<main>
+  <section class="hero"><div class="wrap">
+    <p class="label">Brand kit</p>
+    <h1>Machaon</h1>
+    <p class="lead">Named for the healer at Troy, son of Asclepius. One mark, one blue, one typeface, and the old art of medicine in halftone.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">The mark</p><h2>A stethoscope</h2>
+    <div class="icons">
+      <div class="mark" role="img" aria-label="The stethoscope mark"></div>
+      <figure><img src="/brand/icon-1024.png" width="180" height="180" alt="App icon"><figcaption>180</figcaption></figure>
+      <figure><img src="/brand/icon.svg" width="60" height="60" alt=""><figcaption>60</figcaption></figure>
+      <figure><img src="/brand/icon.svg" width="29" height="29" alt=""><figcaption>29</figcaption></figure>
+      <figure><img src="/favicon-32.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+    </div>
+    <p class="lead">A bold white stroke on a blue tile, no text, no outline. Clear space equals the stroke width. Smallest size 16 px.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">Colour</p><h2>clrs.cc blue</h2>
+    <div class="grid">
+      <div class="tile"><div class="swatch" style="background:#0074D9"></div><b>Accent</b><small>#0074D9 · actions, links, the icon</small></div>
+      <div class="tile"><div class="swatch" style="background:#3d9bf0"></div><b>Accent light</b><small>#3d9bf0 · icon gradient top</small></div>
+      <div class="tile"><div class="swatch" style="background:#0a0e19"></div><b>Night</b><small>#0a0e19 · dark page</small></div>
+      <div class="tile"><div class="swatch" style="background:#fdfdfd"></div><b>Paper</b><small>#fdfdfd · light page</small></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">Type</p><h2>Machaon Sans</h2>
+    <div class="specimen">
+      <p style="font-weight:100">Thin 100 · headlines in caps</p>
+      <p style="font-weight:300">Light 300 · feature heads</p>
+      <p style="font-weight:400">Regular 400 · body text</p>
+      <p style="font-weight:600">Semibold 600 · buttons</p>
+      <small>Inter by Rasmus Andersson, renamed by scripts/gen_font.py, under the SIL Open Font License. Drawn in the spirit of San Francisco and Helvetica.</small>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">Art</p><h2>Medicine, in halftone</h2>
+    <div class="grid">
+      <div class="tile"><div class="art" style="--img:url(/art/sosias.png)"></div><b>Achilles bandaging Patroclus</b><small>The Sosias cup, Troy. CC0</small></div>
+      <div class="tile"><div class="art" style="--img:url(/art/hygieia.png)"></div><b>Hygieia</b><small>Machaon's sister, Rhodes. CC0</small></div>
+      <div class="tile"><div class="art" style="--img:url(/art/bust.png)"></div><b>Asklepios</b><small>His father. Rijksmuseum, CC0</small></div>
+      <div class="tile"><div class="art" style="--img:url(/art/ricci.png)"></div><b>The Dream of Aesculapius</b><small>Sebastiano Ricci. Public domain</small></div>
+      <div class="tile"><div class="art" style="--img:url(/art/hippolytus.png)"></div><b>Aesculapius reviving Hippolytus</b><small>Rijksmuseum engraving. CC0</small></div>
+    </div>
+    <p class="lead">Each work is dithered to a dot mask and tinted on the blue. Every image is used once on the landing.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">Controls</p><h2>48 point capsules</h2>
+    <div class="controls">
+      <a class="btn solid" href="/">Start tracking</a>
+      <a class="btn ghost" href="/#features">See what it does</a>
+      <span class="field">Email</span>
+    </div>
+    <p class="lead">Every control is 48 points tall, one height in a row. Space on the 8 point grid: 4, 8, 12, 16, 24, 32, 48, 64, 96. Focus is a 3 point ring at 30 percent accent.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="label">Files</p><h2>Download</h2>
+    <div class="files">
+      <a href="/brand/icon.svg" download>icon.svg <span>the app icon, flat</span></a>
+      <a href="/brand/icon-1024.png" download>icon-1024.png <span>App Store size, no alpha</span></a>
+      <a href="/brand/mark.svg" download>mark.svg <span>the stethoscope alone, currentColor</span></a>
+      <a href="/brand/tokens.css" download>tokens.css <span>colour, space and shape</span></a>
+      <a href="/og.png" download>og.png <span>link preview, 1200 by 630</span></a>
+      <a href="/fonts/OFL.txt">Machaon Sans licence <span>SIL Open Font License</span></a>
+    </div>
+  </div></section>
+</main>
+<footer>&copy; 2026 Joshua Trommel · Apache 2.0 · <a href="/">machaon.jaybulb.com</a></footer>
+</body>
+</html>

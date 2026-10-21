@@ -226,3 +226,5 @@
 .hl #install-anywhere h2 { font-weight: 200; letter-spacing: .01em; }
 /* on a phone the feature rows stack: give each screenshot a tall slot so it reads */
 @media (max-width: 900px) { .hl .frow .art { aspect-ratio: 4 / 5; } }
+/* the hero leads with the line, not the name: the nav and the tab already say Machaon */
+.hl .hero-h1 { font-size: clamp(44px, 6.4vw, 92px); line-height: 1.04; font-weight: 200; text-transform: none; letter-spacing: -.01em; max-width: 960px; margin: 0 auto; }

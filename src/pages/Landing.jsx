@@ -59,8 +59,8 @@ export default function Landing({ onGetStarted, toggle }) {
         <section className="hero">
           <div className="wrap center">
             <p className="label">Supplements, medications and symptoms</p>
-            <h1>Machaon</h1>
-            <p className="lead">Track what you take, and what it does. A private log with an interaction check before every dose.</p>
+            <h1 className="hero-h1">Track what you take, and what it does.</h1>
+            <p className="lead">A private log with an interaction check before every dose.</p>
             <div className="cta">
               <button className="btn btn-solid" onClick={onGetStarted}>Start tracking</button>
               <a className="btn btn-ghost" href="#features">See what it does</a>
