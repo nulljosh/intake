@@ -21,11 +21,11 @@ export default defineConfig({
         cacheId: 'dose',
       },
       manifest: {
-        name: 'Healstack',
-        short_name: 'Healstack',
+        name: 'Machaon',
+        short_name: 'Machaon',
         description: 'Supplement & symptom tracker',
-        theme_color: '#111111',
-        background_color: '#111111',
+        theme_color: '#0074D9',
+        background_color: '#fdfdfd',
         display: 'standalone',
         icons: [
           { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' },
