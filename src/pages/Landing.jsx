@@ -5,15 +5,15 @@ import './landing.css';
 const APP_STORE = 'https://apps.apple.com/app/id6785764864';
 
 const ROWS = [
-  { shot: 'summary', label: 'Summary', title: 'Your day on one screen', body: 'Pin the numbers you care about. Heart rate, sleep, steps. Your active stack sits right under them.' },
-  { shot: 'interactions', label: 'Interactions', title: 'Check before you take it', body: 'Pick two or more substances and see how they mix. You get the warning before the dose, not after.' },
-  { shot: 'insights', label: 'Insights', title: 'See what actually works', body: 'A heatmap of when you dose, what you use most, and how your body numbers move on the days you take it.' },
+  { shot: 'home', label: 'Home', title: 'Your day on one screen', body: 'A health score, anything your labs flagged, your active stack and what you took today.' },
+  { shot: 'library', label: 'Library', title: '200 substances, explained', body: 'Dosing ranges, timing and harm reduction notes for every entry, sorted by kind.' },
+  { shot: 'insights', label: 'Insights', title: 'See what actually works', body: 'A heatmap of when you dose, what you use most, and a tolerance tracker for anything you take often.' },
 ];
 
 const CELLS = [
   { label: 'Log', title: 'Log doses as you go', body: 'Record what you take as you take it and keep a running stack of everything active.' },
-  { label: 'Library', title: '200 substances, explained', body: 'Dosing ranges, timing and harm reduction notes for every entry.' },
-  { label: 'Sharing', title: 'Hand it to your doctor', body: 'Send a summary, print it, or export the whole log. Nothing leaves your device until you tap.' },
+  { label: 'Interactions', title: 'Check before you take it', body: 'Pick two or more substances and see how they mix, before the dose, not after.' },
+  { label: 'Labs', title: 'Your bloodwork, flagged', body: 'Add a lab panel and anything out of range shows up on your home screen.' },
 ];
 
 // Adds .js to the page, then fades each .reveal in as it scrolls into view (Hermes' landing.js, in React).
@@ -70,8 +70,8 @@ export default function Landing({ onGetStarted, toggle }) {
             <div className="stage">
               <div className="art stage-art" style={{ '--img': 'url(/art/hippolytus.png)' }} aria-hidden="true" />
               <div className="shots">
-                <img src="/screenshots/web-summary.png" alt="Intake summary screen" />
-                <img src="/screenshots/web-insights.png" alt="Intake insights screen" />
+                <img src="/screenshots/ios-home.png" alt="Intake home screen" />
+                <img src="/screenshots/ios-insights.png" alt="Intake insights screen" />
               </div>
             </div>
             <p className="demo-hint">Real screens from the app.</p>
@@ -90,7 +90,7 @@ export default function Landing({ onGetStarted, toggle }) {
           <div className="frows">
             {ROWS.map(r => (
               <article className="frow reveal" key={r.shot}>
-                <div className="art"><img className="shot" src={`/screenshots/web-${r.shot}.png`} alt={`${r.title} screen`} /></div>
+                <div className="art"><img className="shot" src={`/screenshots/ios-${r.shot}.png`} alt={`${r.title} screen`} /></div>
                 <div><p className="label">{r.label}</p><h3>{r.title}</h3><p>{r.body}</p></div>
               </article>
             ))}
