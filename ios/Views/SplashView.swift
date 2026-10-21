@@ -35,7 +35,7 @@ struct SplashView: View {
                         )
                 }
 
-                Text("Healstack")
+                Text("Intake")
                     .font(.system(size: 34, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
             }

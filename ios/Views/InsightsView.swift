@@ -10,15 +10,6 @@ struct InsightsView: View {
 
     private var totalDoses: Int { last30DaysEntries.count }
 
-    private var uniqueSubstances: Int {
-        Set(last30DaysEntries.map(\.substanceKey)).count
-    }
-
-    private var avgPerDay: Double {
-        guard totalDoses > 0 else { return 0 }
-        return Double(totalDoses) / 30.0
-    }
-
     private var mostActiveDay: String {
         guard !last30DaysEntries.isEmpty else { return "--" }
         let calendar = Calendar.current
@@ -165,8 +156,6 @@ struct InsightsView: View {
     private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
             statCard(value: "\(totalDoses)", label: "Total doses")
-            statCard(value: "\(uniqueSubstances)", label: "Unique substances")
-            statCard(value: String(format: "%.1f", avgPerDay), label: "Avg per day")
             statCard(value: mostActiveDay, label: "Most active day")
         }
     }
@@ -200,7 +189,7 @@ struct InsightsView: View {
                     HStack(spacing: 8) {
                         Text(item.name)
                             .font(.subheadline)
-                            .frame(width: 100, alignment: .leading)
+                            .frame(width: 130, alignment: .leading)
                             .lineLimit(1)
                         GeometryReader { geo in
                             RoundedRectangle(cornerRadius: 4)
@@ -235,13 +224,14 @@ struct InsightsView: View {
                             let count = heatmapData[row][col]
                             RoundedRectangle(cornerRadius: 4)
                                 .fill(heatmapColor(count: count))
-                                .frame(width: 40, height: 20)
+                                .frame(maxWidth: .infinity, minHeight: 20, maxHeight: 20)
                         }
                     }
                 }
             }
         }
         .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .glassCard()
     }
 

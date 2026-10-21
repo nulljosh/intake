@@ -72,7 +72,7 @@ targets:
       TARGETED_DEVICE_FAMILY: "1"
       INFOPLIST_FILE: Info.plist
       PRODUCT_BUNDLE_IDENTIFIER: com.heyitsmejosh.dose
-      INFOPLIST_KEY_CFBundleDisplayName: Healstack
+      INFOPLIST_KEY_CFBundleDisplayName: Intake
       CODE_SIGN_ENTITLEMENTS: Healstack.entitlements
       SUPABASE_URL: https://tjsxsqlxjmanwvmywwvw.supabase.co
       SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68
