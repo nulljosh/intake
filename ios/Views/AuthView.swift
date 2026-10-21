@@ -14,21 +14,25 @@ struct AuthView: View {
 
     enum Tab { case signIn, register, reset }
 
+    private var canSubmit: Bool { !loading && !email.isEmpty && (tab == .reset || !password.isEmpty) }
+
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
 
-            VStack(spacing: 28) {
+            // One column on the page, no card: 24 pt margins, 8 pt rhythm, every control a 48 pt capsule.
+            VStack(spacing: 24) {
                 VStack(spacing: 8) {
                     Image("Mark") // the stethoscope from the app icon (brand/mark.svg)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 56, height: 56)
+                        .frame(width: 64, height: 64)
+                        .padding(.bottom, 8)
                         .foregroundStyle(.tint)
                         .accessibilityHidden(true)
 
                     Text("Machaon")
-                        .font(.title2.weight(.semibold))
+                        .font(.largeTitle.weight(.semibold))
 
                     Text("Track what you take, and what it does")
                         .font(.subheadline)
@@ -41,6 +45,7 @@ struct AuthView: View {
                         Text("Register").tag(Tab.register)
                     }
                     .pickerStyle(.segmented)
+                    .controlSize(.large)
                     .onChange(of: tab) { _, _ in
                         errorMessage = nil
                         successMessage = nil
@@ -59,12 +64,12 @@ struct AuthView: View {
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
-                        .textFieldStyle(.roundedBorder)
+                        .modifier(CapsuleField())
 
                     if tab != .reset {
                         SecureField("Password", text: $password)
                             .textContentType(tab == .signIn ? .password : .newPassword)
-                            .textFieldStyle(.roundedBorder)
+                            .modifier(CapsuleField())
                     }
 
                     if tab == .signIn {
@@ -74,8 +79,8 @@ struct AuthView: View {
                                 successMessage = nil
                                 tab = .reset
                             }
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .font(.subheadline)
+                            .frame(minHeight: 44)
                             Spacer()
                         }
                     }
@@ -87,8 +92,8 @@ struct AuthView: View {
                                 successMessage = nil
                                 tab = .signIn
                             }
-                            .font(.caption)
-                            .foregroundStyle(.tint)
+                            .font(.subheadline)
+                            .frame(minHeight: 44)
                             Spacer()
                         }
                     }
@@ -96,14 +101,14 @@ struct AuthView: View {
 
                 if let error = errorMessage {
                     Text(error)
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundStyle(.red)
                         .multilineTextAlignment(.center)
                 }
 
                 if let success = successMessage {
                     Text(success)
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundStyle(.green)
                         .multilineTextAlignment(.center)
                 }
@@ -111,16 +116,19 @@ struct AuthView: View {
                 Button {
                     Task { await submit() }
                 } label: {
-                    HStack {
-                        if loading { ProgressView() }
+                    HStack(spacing: 8) {
+                        if loading { ProgressView().tint(.white) }
                         Text(buttonLabel)
-                            .fontWeight(.semibold)
+                            .font(.system(size: 17, weight: .semibold))
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    // Disabled reads as grey and quiet, not a washed-out blue with a label you can't read.
+                    .foregroundStyle(canSubmit ? Color.white : Color.secondary)
+                    .background(canSubmit ? Color.accentColor : Color.secondary.opacity(0.12), in: Capsule())
+                    .contentShape(Capsule())
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(loading || email.isEmpty || (tab != .reset && password.isEmpty))
+                .buttonStyle(.plain)
+                .disabled(!canSubmit)
 
                 if tab == .signIn {
                     Divider()
@@ -171,9 +179,8 @@ struct AuthView: View {
                     .buttonStyle(.plain)
                 }
             }
-            .padding(28)
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 20))
-            .padding(.horizontal, 20)
+            .frame(maxWidth: 400)
+            .padding(.horizontal, 24)
 
             Spacer()
         }
@@ -208,5 +215,16 @@ struct AuthView: View {
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+}
+
+/// A 48 pt capsule text field, the same height and shape as every button on the screen.
+private struct CapsuleField: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .textFieldStyle(.plain)
+            .padding(.horizontal, 16)
+            .frame(minHeight: 48)
+            .background(Color.secondary.opacity(0.12), in: Capsule())
     }
 }
