@@ -1,27 +1,30 @@
-# Intake loop handoff (2026-10-04, evening)
+# Intake loop handoff (2026-10-21, afternoon)
 
 ## What the loop is
 
-QA the Intake landing page and app until A+ quality. Each pass: run tests and build, record the live landing and app (headless), fix real bugs, redeploy, re-verify. No subagent fan-out. Portfolio vibe design rules apply (no em dashes, no emojis, Geist font, flat monochrome + blue accent).
+QA the Intake landing page and app until A+ quality. Each pass: run tests and build, record the live landing and app (headless), fix real bugs, redeploy, re-verify. No subagent fan-out. Portfolio vibe design rules apply: no em dashes, no emojis, flat design with the blue accent. The accent is clrs.cc blue (#0074D9) and the font is Intake Sans.
 
-## Where things stand (2026-10-04)
+## Where things stand (2026-10-21)
 
-- Web 2.4.0 shipped with three-tab Apple Health layout (Summary, Browse, Sharing), new blue heart-stack icon, white light theme, blue accent on dark.
-- Tests: 60/60 passing.
-- Landing refreshed with real screenshots, iOS marked Live, macOS card says "in review".
-- Privacy critical fix: new accounts now start empty instead of being seeded with a hardcoded personal profile.
-- Native builds: iOS 2.3.6 approved and live on App Store (READY_FOR_SALE, since 2026-10-04). macOS 2.3.5 IN_REVIEW on same version record, waiting on screenshot feedback.
+- The app says Intake in sign-in, splash, watch and permission prompts. Targets, bundle ID and the App Store name are unchanged, and the store listing still says Healstack.
+- iOS uses the native SwiftUI tab bar. The custom floating bar that covered the Save Note button is gone.
+- Insights shows two stat tiles, with the heatmap full width.
+- Brand: a stethoscope mark on clrs.cc blue. The brand kit is regenerated and the iOS app icon and accent are wired to it. A new App Store build is needed before the store shows it.
+- Font: Intake Sans, Inter renamed through scripts/gen_font.py (OFL, weights 100 to 700). Used across the web app and the landing. Geist and Plus Jakarta are removed.
+- Landing at intake.jaybulb.com is rebuilt: navy page, blue frame, large thin caps, a blue band, and halftone art of Asclepius, the Greek god of medicine, from five public domain or CC0 Wikimedia Commons works. It shows real iOS screens in the new blue. Deployed to the Cloudflare Pages project healstack and checked live.
+- Store, last noted 2026-10-16: iOS 2.3.6 ready for distribution, macOS 2.3.5 in review. Nothing was submitted today.
+- Docs: the README still says Healstack in places.
 
-## Known blockers (open roadmap items)
+## Next, in order
 
-1. Git history was scrubbed and force-pushed on 2026-10-04, tag included. A fresh clone is clean. GitHub may still serve the old commits by direct link until Support purges them. Delete ~/Documents/healstack-pre-scrub.bundle once satisfied.
-2. No database cleanup needed: the only row in dose_profiles is Joshua's own account.
-3. App Store name rename to "Intake" was Joshua's pick, but submission is in review so name field is locked until review clears.
-4. Three-tab layout exists only on web; native Swift apps still have old layout (port not started).
-5. macOS 2.3.5 text cut-off bug noted in Resolution Center (not yet reproduced locally).
+1. Build and submit a new iOS build so the stethoscope icon and blue accent reach the store.
+2. Read the App Review reason on the iOS 2.3.6 flag (open since 2026-10-01) and resolve it, or confirm it cleared.
+3. Rename the store listing from Healstack to Intake once Apple accepts the name, in the same submission.
+4. Re-enable Sign in with Apple properly. Blocked on Joshua: Apple Developer portal and Supabase dashboard.
+5. Bring the docs to 100 percent. The README and CLAUDE.md still describe the Healstack name in places.
 
 ## Restart prompt
 
 ```
-/loop QA the Intake landing page and app (~/Documents/Code/intake) until A+ quality: spotless visuals and every line sound. Each pass: run tests+build, record the live landing and app (record-web / headless, no Chrome), fix real bugs, redeploy, re-verify. No subagent fan-out, no em dashes, no emojis, portfolio vibe design rules from CLAUDE.md.
+/loop QA the Intake landing page and app (~/Documents/Code/intake) until A+ quality: spotless visuals and every line sound. Each pass: run tests+build, record the live landing and app (record-web / headless, no Chrome), fix real bugs, redeploy, re-verify. No subagent fan-out, no em dashes, no emojis, portfolio vibe design rules from CLAUDE.md (Intake Sans, clrs.cc blue #0074D9 accent).
 ```

@@ -263,7 +263,6 @@ Verified after: the same login now returns a clean **400 invalid_credentials** i
 - **CLOSED 2026-08-25** (done, 2.3.5 was archived and submitted 2026-08-24, verified WAITING_FOR_REVIEW). Was: Then rebuild and resubmit, after 2026-08-18 per the submission freeze. No app code change is required for this rejection. Build number already bumped off the rejected one (see version item below); the only pre-archive decision left is the 1.0-vs-2.3.x version-string reconciliation., submitted; iOS 2.3.5 WAITING_FOR_REVIEW as of 2026-08-24.
 
 ## From Apple Notes (imported 2026-08-11)
-- [ ] Bump the top-left project icon, consider a pill/medicine mark, or keep the happy face but stronger
 
 > Resume note (2026-08-11): a `wip: partial work from /work notes ingest` commit holds unfinished, unverified changes for the items above. Review `git show HEAD` before building on it, it was committed mid-flight, not reviewed, and is unpushed.
 
@@ -568,7 +567,6 @@ Signing notes, because this took three tries:
 Sidebar routing on macOS was broken (navigationDestination in the sidebar column never swapped the hardcoded Dashboard detail). Fixed. Recapture Lab Results / Feet / Meridians / Symptoms at 1440x900: build Debug, launch with `UITEST_SNAPSHOT -app_theme light -UITEST_TAB "<Sidebar name>"`, temporarily set defaultSize to 1440x900. Old library/insights/body shots were from a pre-reflexology build and were removed from the README.
 
 ## From Notes (2026-09-12)
-- [ ] iOS nav bar unreliable with taps (custom nav bar) — consider reverting to native nav bar
 
 ## Ingested 2026-10-01
 - [ ] App Review flagged an issue with iOS 2.3.6 (submitted Sep 12 2026 via API key, submission 6ae57416-d5bc-4b2b-8b19-23402fcedec6). Read the reason in App Review and resolve. (screenshot: notes/attachments/2026-10-01/healstack-1.png)
@@ -577,6 +575,4 @@ Sidebar routing on macOS was broken (navigationDestination in the sidebar column
 - [ ] Stale App Store name: the live listing still says Healstack (iOS 2.3.6 ready for distribution, macOS 2.3.5 in review). (screenshots: notes/attachments/2026-10-16/intake-2.png, notes/attachments/2026-10-16/intake-3.png)
 
 ## Ingested 2026-10-21
-- [ ] Needs a better name (Greek god of medicine). Note: already renamed Intake; store listing still Healstack, see the stale name item above.
-- [x] Nav bar should be native SwiftUI, not custom (done 2026-10-21: custom floating bar removed, plain TabView bar; compiled, not run on device). It overrides content so we can't see stuff: the floating tab bar covers the Save Note button on the Notes screen. (screenshot: notes/attachments/2026-10-21/healstack-1.png)
 - [ ] New stethoscope icon and clrs.cc blue accent (#0074D9) need a new App Store build to show on the store.
