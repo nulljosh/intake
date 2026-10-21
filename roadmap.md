@@ -575,3 +575,7 @@ Sidebar routing on macOS was broken (navigationDestination in the sidebar column
 
 ## Ingested 2026-10-16
 - [ ] Stale App Store name: the live listing still says Healstack (iOS 2.3.6 ready for distribution, macOS 2.3.5 in review). (screenshots: notes/attachments/2026-10-16/intake-2.png, notes/attachments/2026-10-16/intake-3.png)
+
+## Ingested 2026-10-21
+- [ ] Needs a better name (Greek god of medicine). Note: already renamed Intake; store listing still Healstack, see the stale name item above.
+- [ ] Nav bar should be native SwiftUI, not custom. It overrides content so we can't see stuff: the floating tab bar covers the Save Note button on the Notes screen. (screenshot: notes/attachments/2026-10-21/healstack-1.png)
