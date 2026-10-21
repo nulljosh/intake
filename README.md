@@ -39,10 +39,10 @@ Native apps live in `ios/` and `macos/`. Each has an xcodegen `project.yml`.
 Intake Sans (Inter, renamed by `scripts/gen_font.py`), clrs.cc blue `#0074D9`, a stethoscope for the mark, and Asclepius in halftone on the landing. The brand kit is [brand/BRAND.md](brand/BRAND.md).
 
 ## Docs
-- [Technical whitepaper](WHITEPAPER.md)
+- [Technical whitepaper](docs/WHITEPAPER.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [API and agent tools](docs/API.md). HTTP surface plus the WebMCP tools on `document.modelContext`.
-- [Roadmap](roadmap.md)
+- [Roadmap](docs/roadmap.md)
 
 <img src="architecture.svg" width="600" alt="Architecture">
 

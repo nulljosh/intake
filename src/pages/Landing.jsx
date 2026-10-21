@@ -136,8 +136,8 @@ export default function Landing({ onGetStarted, toggle }) {
         <div className="foot-top">
           <div className="foot-brand"><img src="/icon.svg" alt="" width="40" height="40" /><b>Intake</b><p>Track what you take, and what it does.</p></div>
           <nav className="foot-cols" aria-label="Footer">
-            <div><p className="label">Intake</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="https://github.com/nulljosh/intake/blob/main/WHITEPAPER.md">Whitepaper</a></div>
-            <div><p className="label">Source</p><a href="https://github.com/nulljosh/intake">GitHub</a><a href="https://github.com/nulljosh/intake/blob/main/docs/API.md">API</a><a href="https://github.com/nulljosh/intake/blob/main/docs/ARCHITECTURE.md">Architecture</a><a href="https://github.com/nulljosh/intake/blob/main/SECURITY.md">Security</a></div>
+            <div><p className="label">Intake</p><a href={APP_STORE}>App Store</a><a href="#features">Features</a><a href="#install-anywhere">Install anywhere</a><a href="https://github.com/nulljosh/intake/blob/main/docs/WHITEPAPER.md">Whitepaper</a></div>
+            <div><p className="label">Source</p><a href="https://github.com/nulljosh/intake">GitHub</a><a href="https://github.com/nulljosh/intake/blob/main/docs/API.md">API</a><a href="https://github.com/nulljosh/intake/blob/main/docs/ARCHITECTURE.md">Architecture</a><a href="https://github.com/nulljosh/intake/blob/main/docs/SECURITY.md">Security</a></div>
             <div><p className="label">More</p><a href="/privacy.html">Privacy</a><a href="/tos.html">Terms</a><a href="https://jaybulb.com">More apps</a><a href="#top">Back to top</a></div>
           </nav>
         </div>
