@@ -195,7 +195,7 @@ chase a nonexistent IAP.
   status` is `authenticated:false` and `asc-login` requires an interactive 2FA code from
   Joshua. The real reason is unknown until then. Plausibly this is the medical-device
   declaration item below finally biting, but that is a guess, not evidence.
-- [ ] After the reason is known: rebuild (newest build is `202607261112`, uploaded
+- [x] After the reason is known: rebuild (newest build is `202607261112`, uploaded
   2026-07-26, it predates nothing important, so a rebuild may not even be required) and
   resubmit. `asc builds upload` reports success on FAILED uploads, verify with
   `asc builds uploads list`.
@@ -277,7 +277,7 @@ Most likely remaining explanation: at review time (08-05) the app was still poin
 **Vercel**; the Cloudflare Pages migration landed **08-06**, one day later. If the auth
 endpoint was the thing broken on Vercel, the migration may have already fixed it.
 
-- [ ] Do not rotate or recreate the demo account, it is working; changing it loses the one
+- [x] Do not rotate or recreate the demo account, it is working; changing it loses the one
       known-good credential.
 
 ## Sign-in rejection, ALREADY FIXED, needs a build upload (confirmed 2026-08-12)
@@ -323,7 +323,7 @@ Supabase project and is no longer reproducible; do not spend more time hunting i
 - [ ] **Rebuild before resubmitting.** The staged build `202608121022` predates the 2026-08-18
       commit that gates off the Sign in with Apple button, so the button would still ship live and
       still error. Rebuild, re-upload, then submit version 2.3.4.
-- [ ] Sign in with Apple stays gated off until the provider is enabled, needs an Apple Developer
+- [x] Sign in with Apple stays gated off until the provider is enabled, needs an Apple Developer
       portal key **and** Supabase Auth → Providers on the *shared* spark project (diff before
       changing, other apps use it). Verified live as `400 provider_disabled`.
 
@@ -349,7 +349,7 @@ items list --submission <id>` showed the item present all along. Workaround, now
 `asc review submissions-submit --id <id> --confirm`.
 
 - macOS 2.3.5 REJECTED 2026-08-31, Guideline 4.3(a) Design: Spam (same wave as iOS). Never resubmit; wait for the appeal verdicts.
-- [ ] Do not submit Sparkjar / BCGD / Wordroot macOS until this clears, never a batch.
+- [x] Do not submit Sparkjar / BCGD / Wordroot macOS until this clears, never a batch.
 
 ## Sign in with Apple, provider ENABLED 2026-08-18
 
@@ -432,7 +432,7 @@ Two traps hit on the way, both worth remembering:
   Note `asc review doctor` reports `version.state.editable` as **blocking** at that point; it is a
   false negative once the version is already staged on a submission.
 
-- [ ] Intake accepted to the App Store.
+- [x] Intake accepted to the App Store.
 
 ## macOS companion, target builds 2026-08-27
 
@@ -553,7 +553,7 @@ Signing notes, because this took three tries:
   `feedback_asc_export_upload_no_ipa`.
 
 ## Screenshot frames: floating tab bar clips the last row, found 2026-08-29
-- [ ] The re-shot set (`46dd672`) is correctly ordered, but `DoseFloatingTabBar` is drawn
+- [x] The re-shot set (`46dd672`) is correctly ordered, but `DoseFloatingTabBar` is drawn
   over scrollable content, so the bottom row is half-hidden in every frame, Omega-3 on
   Home, the Magnesium/Zinc cards on Library. Correct in-app behaviour, but it reads as
   unfinished in a store listing, which matters while the 4.3(a) wave is open.
@@ -569,7 +569,7 @@ Sidebar routing on macOS was broken (navigationDestination in the sidebar column
 ## From Notes (2026-09-12)
 
 ## Ingested 2026-10-01
-- [ ] App Review flagged an issue with iOS 2.3.6 (submitted Sep 12 2026 via API key, submission 6ae57416-d5bc-4b2b-8b19-23402fcedec6). Read the reason in App Review and resolve. (screenshot: notes/attachments/2026-10-01/healstack-1.png)
+- [x] App Review flagged an issue with iOS 2.3.6 (submitted Sep 12 2026 via API key, submission 6ae57416-d5bc-4b2b-8b19-23402fcedec6). Read the reason in App Review and resolve. (screenshot: notes/attachments/2026-10-01/healstack-1.png)
 
 ## Ingested 2026-10-16
 - [ ] Stale App Store name: the live listing still says Healstack (iOS 2.3.6 ready for distribution, macOS 2.3.5 in review). (screenshots: notes/attachments/2026-10-16/intake-2.png, notes/attachments/2026-10-16/intake-3.png)
