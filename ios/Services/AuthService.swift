@@ -45,7 +45,7 @@ final class AuthService {
     private var currentNonce: String?
 
     init() {
-        if CommandLine.arguments.contains("UITEST_SNAPSHOT") {
+        if CommandLine.isUITestSnapshot {
             isLoading = false
             return
         }

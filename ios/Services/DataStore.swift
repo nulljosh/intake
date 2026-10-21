@@ -54,7 +54,7 @@ final class DataStore {
     private let labResultsKey = "dose.labResults"
 
     init() {
-        if CommandLine.arguments.contains("UITEST_SNAPSHOT") {
+        if CommandLine.isUITestSnapshot {
             seedForSnapshot()
             isLoading = false
             return
@@ -325,5 +325,13 @@ final class DataStore {
     private func load<T: Codable>(_ type: T.Type, forKey key: String) -> T? {
         guard let data = defaults.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(type, from: data)
+    }
+}
+
+extension CommandLine {
+    /// Screenshot runs launch with the snapshot flag. Accept `-UITEST_SNAPSHOT` too: macOS treats a bare
+    /// argument as a document to open, and an app launched to open a document gets no window (issue #18).
+    static var isUITestSnapshot: Bool {
+        arguments.contains("UITEST_SNAPSHOT") || arguments.contains("-UITEST_SNAPSHOT")
     }
 }

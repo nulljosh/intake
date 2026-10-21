@@ -19,7 +19,7 @@ struct WhatsNewSheet: View {
     // a pinned version silently stops suppressing the sheet the next time whatsNewVersion is
     // bumped, which is exactly how it leaked into the App Store screenshot set.
     private var isUITestSnapshot: Bool {
-        CommandLine.arguments.contains("UITEST_SNAPSHOT")
+        CommandLine.isUITestSnapshot
     }
 
     var body: some View {

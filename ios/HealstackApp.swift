@@ -31,7 +31,7 @@ struct HealstackApp: App {
     @State private var selectedTab = Self.initialTab
 
     private var isUITestSnapshot: Bool {
-        CommandLine.arguments.contains("UITEST_SNAPSHOT")
+        CommandLine.isUITestSnapshot
     }
 
     // ponytail: screenshot capture selects the tab by launch argument instead of tapping the

@@ -48,7 +48,7 @@ export default function Landing({ onGetStarted, toggle }) {
           <a href="#features">Features</a>
           <a href="#get">Platforms</a>
         </nav>
-        <a className="nav-brand" href="#top" aria-label="Machaon home"><img src="/icon.svg" alt="" width="28" height="28" /><span>Machaon</span></a>
+        <a className="nav-brand" href="#top" aria-label="Machaon home"><img src="/icon.svg" alt="" width="32" height="32" /></a>
         <div className="nav-end">
           {toggle}
           <button className="btn btn-solid" onClick={onGetStarted}>Get started</button>
