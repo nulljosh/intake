@@ -12,15 +12,51 @@ async function sha256Hex(str) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-async function authenticate(request, env) {
-  const token = env.DOSE_SYNC_TOKEN;
-  if (!token) return { ok: false, tokenHash: null };
+// Who is calling: a signed-in user of either sign-in service, linked by confirmed email so the web app (jaybulb-api)
+// and the native apps (Supabase) read and write the same log. The old shared DOSE_SYNC_TOKEN still works for data
+// already stored under it. An unconfirmed email never matches, so nobody can claim someone else's address.
+const JAYBULB_API = 'https://api.jaybulb.com';
+const SUPABASE_URL = 'https://tjsxsqlxjmanwvmywwvw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqc3hzcWx4am1hbnd2bXl3d3Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0OTc0MDEsImV4cCI6MjA4NjA3MzQwMX0.LphLfho3wdQC20MhtcnBpzQUNuBoTOobrugQbNGxc68'; // public anon key, same as the iOS app ships
+
+async function confirmedEmail(url, headers) {
+  try {
+    const r = await fetch(url, { headers });
+    if (!r.ok) return null;
+    const u = await r.json();
+    return u?.email && u.email_confirmed_at ? u.email.trim().toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function authenticate(request, env, verify = confirmedEmail) {
   const auth = request.headers.get('authorization') || '';
-  if (!auth.startsWith('Bearer ')) return { ok: false, tokenHash: null };
+  if (!auth.startsWith('Bearer ')) return { ok: false, key: null };
   const provided = auth.slice(7);
-  if (!timingSafeEqual(provided, token)) return { ok: false, tokenHash: null };
-  const tokenHash = (await sha256Hex(token)).slice(0, 16);
-  return { ok: true, tokenHash };
+  if (env.DOSE_SYNC_TOKEN && timingSafeEqual(provided, env.DOSE_SYNC_TOKEN)) {
+    return { ok: true, key: `dose:${(await sha256Hex(env.DOSE_SYNC_TOKEN)).slice(0, 16)}` };
+  }
+  const email = (await verify(`${JAYBULB_API}/auth/user`, { Authorization: auth }))
+    || (await verify(`${SUPABASE_URL}/auth/v1/user`, { Authorization: auth, apikey: SUPABASE_ANON_KEY }));
+  if (!email) return { ok: false, key: null };
+  return { ok: true, key: `user:${(await sha256Hex(email)).slice(0, 32)}` };
+}
+
+// Two devices push their own copy; keep every entry either one has (by id), newest copy wins for the rest.
+export function merge(stored, body) {
+  const union = (a = [], b = []) => {
+    const out = new Map();
+    for (const e of [...a, ...b]) out.set(e?.id ?? JSON.stringify(e), e);
+    return [...out.values()];
+  };
+  return {
+    log: union(stored.log, body.log),
+    substances: union(stored.substances, body.substances),
+    biometrics: union(stored.biometrics, body.biometrics),
+    profile: { ...(stored.profile || {}), ...(body.profile || {}) },
+    medications: body.medications !== undefined ? body.medications : stored.medications || [],
+  };
 }
 
 function validateBody(body) {
@@ -40,11 +76,11 @@ const RATE_LIMIT = 10;
 // if that ever matters.
 const rateLimitStore = new Map();
 
-function checkRateLimit(tokenHash) {
+function checkRateLimit(key) { // per account
   const now = Date.now();
-  const entry = rateLimitStore.get(tokenHash);
+  const entry = rateLimitStore.get(key);
   if (!entry || now - entry.start > RATE_WINDOW_MS) {
-    rateLimitStore.set(tokenHash, { start: now, count: 1 });
+    rateLimitStore.set(key, { start: now, count: 1 });
     return true;
   }
   if (entry.count >= RATE_LIMIT) return false;
@@ -81,14 +117,12 @@ export async function onRequest(context) {
     });
   }
 
-  const { ok, tokenHash } = await authenticate(request, env);
+  const { ok, key: DATA_KEY } = await authenticate(request, env);
   if (!ok) return json(401, { error: 'unauthorized' });
 
-  if (!checkRateLimit(tokenHash)) {
+  if (!checkRateLimit(DATA_KEY)) {
     return json(429, { error: 'rate limit exceeded' });
   }
-
-  const DATA_KEY = `dose:${tokenHash}`;
 
   if (request.method === 'GET') {
     const raw = await env.DOSE_KV.get(DATA_KEY);
@@ -108,14 +142,8 @@ export async function onRequest(context) {
     const serialized = JSON.stringify(body);
     if (serialized.length > 1_000_000) return json(413, { error: 'payload too large' });
 
-    const payload = {
-      log: body.log || [],
-      substances: body.substances || [],
-      biometrics: body.biometrics || [],
-      profile: body.profile || {},
-      medications: body.medications || [],
-      updatedAt: new Date().toISOString(),
-    };
+    const raw = await env.DOSE_KV.get(DATA_KEY);
+    const payload = { ...merge(raw ? JSON.parse(raw) : {}, body), updatedAt: new Date().toISOString() };
 
     await env.DOSE_KV.put(DATA_KEY, JSON.stringify(payload));
     return json(200, { ok: true, updatedAt: payload.updatedAt });

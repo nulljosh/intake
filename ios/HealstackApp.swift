@@ -18,6 +18,7 @@ struct HealstackApp: App {
     @State private var healthKitService = HealthKitService()
     @State private var notificationService = NotificationService()
     @State private var syncService = SyncService()
+    @Environment(\.scenePhase) private var scenePhase
     @State private var bodyworkStore = BodyworkSessionStore()
     @State private var showSplash = true
     @State private var biometryType: LABiometryType = .none
@@ -88,6 +89,14 @@ struct HealstackApp: App {
                 .task {
                     if HealthKitService.isAvailable && !isUITestSnapshot {
                         await healthKitService.requestAuthorization()
+                    }
+                }
+                // Same account, same log as the web: pull what the web added, then push what this device has.
+                .onChange(of: scenePhase, initial: true) { _, phase in
+                    guard phase == .active, syncService.syncEnabled, authService.user != nil, !isUITestSnapshot else { return }
+                    Task {
+                        await syncService.pull(dataStore: dataStore)
+                        await syncService.push(dataStore: dataStore)
                     }
                 }
 

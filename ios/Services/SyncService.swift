@@ -12,15 +12,16 @@ final class SyncService {
 
     private let lastSyncKey = "dose.lastSyncDate"
 
+    /// On unless the user turned it off, so a phone and the web app on the same account show the same log.
     var syncEnabled: Bool {
-        get { UserDefaults.standard.bool(forKey: "dose.syncEnabled") }
+        get { UserDefaults.standard.object(forKey: "dose.syncEnabled") as? Bool ?? true }
         set { UserDefaults.standard.set(newValue, forKey: "dose.syncEnabled") }
     }
 
     var isConfigured: Bool { syncEnabled }
 
     private var baseURL: URL {
-        URL(string: "https://healstack.jaybulb.com/api/sync")!
+        URL(string: "https://intake.jaybulb.com/api/sync")!
     }
 
     init() {

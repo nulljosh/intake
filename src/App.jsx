@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import { SessionProvider } from './context/SessionContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { syncNow } from './lib/cloudSync';
 import Auth from './pages/Auth';
 import Landing from './pages/Landing';
 import ResetPassword from './pages/ResetPassword';
@@ -52,13 +53,24 @@ function AppShell({ theme, setTheme }) {
   const { user, loading, isPasswordRecovery } = useAuth();
   // ponytail: signed-out view is a two-state toggle, not a route, no router needed above AuthProvider
   const [showAuth, setShowAuth] = useState(false);
+  // Pull the account's log from the phone on sign-in and on coming back to the tab; push it when the tab is hidden.
+  // A new arrival bumps syncRev, which remounts the pages so they re-read localStorage.
+  const [syncRev, setSyncRev] = useState(0);
+  useEffect(() => {
+    if (!user) return;
+    const pull = () => syncNow().then(changed => changed && setSyncRev(r => r + 1)).catch(() => {});
+    const onVisibility = () => (document.visibilityState === 'hidden' ? syncNow().catch(() => {}) : pull());
+    pull();
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [user]);
 
   if (loading) return null;
   if (isPasswordRecovery) return <ResetPassword />;
   if (!user) return showAuth ? <Auth /> : <Landing onGetStarted={() => setShowAuth(true)} toggle={<ThemeToggle theme={theme} setTheme={setTheme} style={{ position: 'static' }} />} />;
 
   return (
-    <SessionProvider>
+    <SessionProvider key={syncRev}>
       <main style={{ minHeight: '100dvh' }}>
         <ThemeToggle theme={theme} setTheme={setTheme} />
         <Link to="/profile" className="theme-toggle profile-link" aria-label="Profile">
