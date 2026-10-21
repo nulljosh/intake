@@ -33,8 +33,9 @@ function useReveal(rootRef) {
   }, [rootRef]);
 }
 
-// Art, dithered to halftone: Sebastiano Ricci, The Dream of Aesculapius (public domain); Rijksmuseum engravings of
-// Aesculapius reviving Hippolytus, a bust of Asklepios and a sculpture plate (CC0); a statue of Asclepius (CC0).
+// Art, dithered to halftone: Sebastiano Ricci, The Dream of Aesculapius (public domain); a Rijksmuseum engraving of
+// Aesculapius reviving Hippolytus (CC0); the Sosias cup, Achilles bandaging Patroclus at Troy, the war Machaon served
+// as healer (CC0); Hygieia of Rhodes, Machaon's sister (CC0); a Rijksmuseum bust of Asklepios, his father (CC0).
 // All via Wikimedia Commons. Every image is used once.
 export default function Landing({ onGetStarted, toggle }) {
   const root = useRef(null);
@@ -83,7 +84,7 @@ export default function Landing({ onGetStarted, toggle }) {
           <div className="band-head">
             <div className="art band-art" style={{ '--img': 'url(/art/ricci.png)' }} aria-hidden="true" />
             <div className="band-copy reveal">
-              <p className="label">The doctor in your pocket</p>
+              <p className="label">Named for the healer at Troy</p>
               <h2>Know what works</h2>
               <p>Most trackers stop at a list. Machaon shows what each dose did.</p>
             </div>
@@ -111,17 +112,17 @@ export default function Landing({ onGetStarted, toggle }) {
             <p className="body reveal">One account. Your log follows you between the web and your phone.</p>
             <div className="prods">
               <article className="prod reveal">
-                <div className="art prod-art" style={{ '--img': 'url(/art/bust.png)' }} aria-hidden="true" />
+                <div className="art prod-art" style={{ '--img': 'url(/art/sosias.png)' }} aria-hidden="true" />
                 <p className="label">Web</p><h3>machaon.jaybulb.com</h3><p>Runs in any browser. Installs like an app.</p>
                 <button className="btn btn-solid" onClick={onGetStarted}>Open the web app</button>
               </article>
               <article className="prod reveal">
-                <div className="art prod-art" style={{ '--img': 'url(/art/statue.png)' }} aria-hidden="true" />
+                <div className="art prod-art" style={{ '--img': 'url(/art/hygieia.png)' }} aria-hidden="true" />
                 <p className="label">iOS 17 and up</p><h3>iPhone and iPad</h3><p>A native app with Health, widgets and Face ID.</p>
                 <a href={APP_STORE}>App Store &rarr;</a>
               </article>
               <article className="prod reveal">
-                <div className="art prod-art" style={{ '--img': 'url(/art/plate.png)' }} aria-hidden="true" />
+                <div className="art prod-art" style={{ '--img': 'url(/art/bust.png)' }} aria-hidden="true" />
                 <p className="label">Open source</p><h3>Apache 2.0</h3><p>Read every line, or run your own copy.</p>
                 <a href="https://github.com/nulljosh/machaon">GitHub &rarr;</a>
               </article>
