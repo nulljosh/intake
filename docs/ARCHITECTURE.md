@@ -127,7 +127,7 @@ Data syncs via `functions/api/sync.js` only for Pro users; free users stay local
 | `functions/api/stripe-webhook.js` (41L) | Cloudflare Worker: Stripe webhook receiver, verifies webhook signature using STRIPE_WEBHOOK_SECRET, extracts client_reference_id (Supabase userId), writes `pro:<userId>` flag to DOSE_KV on successful payment |
 | `functions/api/sync.js` (125L) | Cloudflare Worker: authenticated data sync endpoint for Pro users, rate-limited (10 req/min per token), token verified via timing-safe SHA-256 hash comparison against stored hash, accepts POST with dose log JSON, stores/retrieves from DOSE_KV namespace |
 | `supabase/migrations/20260527000000_dose_profiles.sql` | RLS-protected dose_profiles table, one row per user (references auth.users on delete cascade), stores custom profile data as jsonb (substances list, conditions, notes), auto-populated on user signup |
-| `src/index.css` | Full design system: portfolio vibe (Geist font when available, fallback sans-serif), flat monochrome + blue accent, CSS custom properties (--bg, --border, --accent, etc), light/dark mode variables |
+| `src/index.css` | Full design system: Intake Sans with a system fallback, flat, clrs.cc blue accent, CSS custom properties (--bg, --border, --accent, etc), light/dark mode variables |
 | `src/test/auth.test.jsx` | Vitest: Auth and ResetPassword component rendering, form submission, error handling |
 | `src/test/stripe-auth.test.js` | Vitest: Stripe checkout session creation endpoint, verifies caller's Supabase token before session creation |
 | `src/test/stripe-webhook.test.js` | Vitest: Stripe webhook signature verification, client_reference_id extraction, pro flag KV write |

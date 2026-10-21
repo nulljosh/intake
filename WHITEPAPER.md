@@ -43,8 +43,8 @@ sensitive enough that the fewer systems that touch it, the better.
 
 ## Design
 
-Portfolio design tokens (Geist font, flat monochrome + blue accent, no
-shadows/gradients/emojis). Mobile-first with bottom nav and safe-area-inset
+Intake Sans (Inter, renamed by `scripts/gen_font.py`) on a flat page with one
+accent, clrs.cc blue `#0074D9`. No shadows, gradients or emojis in the app. Mobile-first with bottom nav and safe-area-inset
 support. OS-aware theme (auto dark/light + manual override).
 
 ## Companion App

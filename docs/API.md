@@ -43,7 +43,7 @@ the client; see `src/lib/supabase.js`.
 
 ## WebMCP
 
-With the app open in a browser that supports WebMCP, healstack registers tools
+With the app open in a browser that supports WebMCP, Intake registers tools
 on `document.modelContext`. Source: `src/lib/webmcp.jsx`.
 
 ### Read-only
