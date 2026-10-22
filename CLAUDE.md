@@ -68,3 +68,8 @@ Lexly is the exception: it uses explicit `INFOPLIST_FILE` paths with
 Also: a duplicate `entitlements:` key in one target silently drops the first block's
 keys (last wins in YAML). That is how litigate briefly lost `app-sandbox` and
 `network.client` on macOS.
+
+## Ingested 2026-10-21
+- [ ] [P1] Stale App Store description. It still says Healstack, not Machaon. (notes/attachments/2026-10-21/machaeon-2.png)
+- [ ] [P1] App Store screenshots show the "What's New in v2.3.2" modal. Retake without it. (notes/attachments/2026-10-21/machaeon-1.png)
+- [ ] [P2] Splash screen should show the new logo, animate as it loads, and show the onboarding process to new users.
